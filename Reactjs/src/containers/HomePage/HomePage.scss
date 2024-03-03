@@ -1,0 +1,162 @@
+//reset slick slider css
+.slick-prev{
+    left: -25px !important;
+    z-index: 1000 !important;
+    height: 48px !important;
+    width: 44px !important;
+    background: #fff !important;
+    border: 2px solid #d7d7d7;
+
+    &:hover{
+        background: #ecebeb !important;
+    }
+}
+
+.slick-next{
+    right: -25px !important;
+    z-index: 1000 !important;
+    height: 48px !important;
+    width: 44px !important;
+    background: #fff !important;
+    border: 2px solid #d7d7d7;
+}
+
+.slick-prev:before,
+.slick-next:before{
+    font-family: FontAwesome !important;
+    color: rgb(54, 48, 48) !important;
+    // content:"\e258" !important;
+}
+
+.section-share{
+    &.section-specialty{
+        background: #f5f5f5;
+    }
+
+    &.section-outstanding-doctor{
+        background: #f5f5f5;
+    }
+    &.section-about{
+        height: 430px !important;
+        border-top:1px solid #f5f5f5;
+        border-bottom:1px solid #f5f5f5;
+    }
+}
+
+.section-share{
+    .section-body{
+
+        .section-customize{
+            .bg-image{
+                width: 300px;
+                height: 180px;
+                background-position: center center;
+                background-repeat:no-repeat;
+                background-size: cover;
+                background-color: #eee;
+                margin-bottom:10px ;
+
+                &.section-sepcialty{
+                    background-image: url(../../assets/specialty/co-xuong-khop.png);
+                }
+
+                &.section-medical-facility{
+                    background-image: url(../../assets/medical-facility/benh-vien-huu-nghi-viet-duc.png);
+                    height: 170px;
+                    width: 305px;
+                }
+
+                &.section-outstanding-doctor{
+                    background-image: url(../../assets/outstanding-doctor/bs-nhan.png);
+                    height: 130px;
+                    width: 130px;
+                    border-radius: 50%;
+                }
+                &.section-handbook{
+                    background-image: url(../../assets/handbook/5-dia-chi-nha-khoa-nieng-rang-tra-gop-cho-sinh-vien-tai-ha-noi.png);
+                    height: 160px;
+                    width: 300px;
+                }
+            }
+        }
+    }
+}
+
+.section-outstanding-doctor{
+    .outer-bg{
+        display: flex;
+        justify-content: center;
+        margin-bottom:10px ;
+    }
+}
+
+.section-customize{
+    padding: 5px;
+
+    .customize-border{
+        border: 2px solid rgb(224, 224, 224);
+        padding: 15px;
+    }
+}
+
+
+.section-share{
+    height: 330px;
+
+    .section-container{
+        margin: 0 100px;
+        display: flex;
+        flex-direction: column;
+
+        .section-header{
+            height: 60px;
+            margin-bottom:30px ;
+            padding-top: 30px;
+
+            .title-section{
+                font-size: 24px;
+                font-weight: 600;
+            }
+
+            .btn-section{
+                background: #ebebeb;
+                float: right;
+                padding: 10px 15px;
+                border: none;
+                outline: none;
+                display: block;
+                cursor: pointer;
+                color: black;
+
+                &:hover{
+                    color: #fff;
+                    background: #f7b800;
+                }
+            }
+        }
+    }
+}
+
+.home-footer{
+    text-align: center;
+    padding-top: 10px;
+
+    a{
+        text-decoration: unset;
+    }
+}
+
+.section-about{
+    margin: 0 100px;
+
+    .section-about-header{
+        padding:20px 10px;
+        font-size: 22px;
+        font-weight: 600;
+    }
+
+    .section-about-content{
+        display: flex;
+        gap:50px
+    }
+}
