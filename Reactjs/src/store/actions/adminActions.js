@@ -94,7 +94,7 @@ export const createNewUser = (data) => {
   return async (dispatch, getState) => {
     try {
       let res = await createNewUserService(data);
-      console.log("quangbeo check create user", res);
+      console.log("check create user", res);
       if (res && res.errCode === 0) {
         toast.success("Create a new user success");
         dispatch(saveUserSuccess());
@@ -148,7 +148,7 @@ export const deleteAUser = (userId) => {
   return async (dispatch, getState) => {
     try {
       let res = await deleteUserService(userId);
-      console.log("quangbeo check create user", res);
+      console.log("check create user", res);
       if (res && res.errCode === 0) {
         toast.success("Delete user success");
         dispatch(saveUserSuccess());
@@ -173,13 +173,13 @@ export const deleteUsersFailed = () => ({
   type: actionTypes.DELETE_USERS_FAILDED,
 });
 
-export const editAUser = (data) => {
+export const editUser = (data) => {
   return async (dispatch, getState) => {
     try {
       let res = await editUserService(data);
-      console.log("quangbeo check create user", res);
+      console.log("check create user", res);
       if (res && res.errCode === 0) {
-        toast.success("Update user success");
+        toast.success("Update user successfly");
         dispatch(editUserSuccess());
         dispatch(fetchAllUsersStart());
       } else {

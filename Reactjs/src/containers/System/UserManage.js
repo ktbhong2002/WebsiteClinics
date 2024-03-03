@@ -23,11 +23,11 @@ class UserManage extends Component {
   }
 
   async componentDidMount() {
-    await this.gatAllUsersFromReact();
+    await this.getAllUsersFromReact();
   }
 
-  gatAllUsersFromReact = async () => {
-    let response = await getAllUsers("ALL");
+  getAllUsersFromReact = async () => {
+    let response = await getAllUsers(`ALL`);
     if (response && response.errCode === 0) {
       this.setState({
         arrUsers: response.users,
@@ -56,7 +56,7 @@ class UserManage extends Component {
       if (response && response.errCode !== 0) {
         alert(response.errMessage);
       } else {
-        await this.gatAllUsersFromReact();
+        await this.getAllUsersFromReact();
         this.setState({
           isOpenModalUser: false,
         });
@@ -71,7 +71,7 @@ class UserManage extends Component {
     try {
       let res = await deleteUserService(user.id);
       if (res && res.errCode === 0) {
-        await this.gatAllUsersFromReact();
+        await this.getAllUsersFromReact();
       } else {
         alert(res.errMessage);
       }
@@ -94,7 +94,7 @@ class UserManage extends Component {
         this.setState({
           isOpenModaEditlUser: false,
         });
-        this.gatAllUsersFromReact();
+        await this.getAllUsersFromReact();
       } else {
         alert(res.errMessage);
       }
@@ -120,7 +120,7 @@ class UserManage extends Component {
             editUser={this.doEditUser}
           />
         )}
-        <div className="title tex-center">Manage users with quangbeo</div>
+        <div className="title tex-center">Manage users</div>
         <div className="mx-1">
           <button
             className="btn btn-primary px-3"
@@ -142,9 +142,8 @@ class UserManage extends Component {
 
               {arrUsers &&
                 arrUsers.map((item, index) => {
-                  console.log("Check map: ", item, index);
                   return (
-                    <tr>
+                    <tr key={item.id}>
                       <td>{item.email}</td>
                       <td>{item.firstName}</td>
                       <td>{item.lastName}</td>

@@ -213,7 +213,7 @@ let getAllCodeService = (typeInput) => {
       if (!typeInput) {
         resolve({
           errCode: 1,
-          errMessage: "Missing required params",
+          errMessage: "Missing required parameter",
         });
       } else {
         let res = {};

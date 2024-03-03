@@ -21,7 +21,7 @@ class Header extends Component {
         </div>
         <div className="languages">
           <span className="welcome">
-            <FormattedMessage id="homeheader.welcome" />{" "}
+            <FormattedMessage id="home_header.welcome" />{" "}
             {userInfo && userInfo.firstName ? userInfo.firstName : ""}
           </span>
           <span
@@ -44,7 +44,7 @@ class Header extends Component {
           <div
             className="btn btn-logout"
             onClick={processLogout}
-            title="logout"
+            title="Log out"
           >
             <i className="fas fa-sign-out-alt"></i>
           </div>

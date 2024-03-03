@@ -4,8 +4,8 @@ import "./HomeHeader.scss";
 import { FormattedMessage } from "react-intl";
 import { LANGUAGES } from "../../utils";
 import { changeLanguageApp } from "../../store/actions";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+// import "slick-carousel/slick/slick.css";
+// import "slick-carousel/slick/slick-theme.css";
 
 class HomeHeader extends Component {
   changeLanguage = (language) => {
@@ -21,7 +21,6 @@ class HomeHeader extends Component {
           <div className="home-header-content">
             <div className="left-content">
               <i className="fas fa-bars"></i>
-              {/* <img className="header-logo" src={logo}></img> */}
               <div className="header-logo"></div>
             </div>
             <div className="center-content">
