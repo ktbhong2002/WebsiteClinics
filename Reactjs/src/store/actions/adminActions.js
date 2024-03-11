@@ -117,7 +117,6 @@ export const fetchAllUserStart = () => {
     try {
       let res = await getAllUsers(`ALL`);
       if (res && res.errCode === 0) {
-        //dispatch(fetchAllUsersSuccess(res.users));
         dispatch(fetchAllUsersSuccess(res.users.reverse()));
       } else {
         toast.error("Fetch all user error!");
