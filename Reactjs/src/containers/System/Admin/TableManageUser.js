@@ -28,6 +28,10 @@ class TableManageUser extends Component {
     this.props.deleteAUserRedux(user.id);
   };
 
+  handleEditUser = (user) => {
+    this.props.handleEditUserFromParentKey(user);
+  };
+
   render() {
     console.log("check list user: ", this.props.listUsers);
     console.log("check set state: ", this.state.usersRedux);
@@ -53,7 +57,10 @@ class TableManageUser extends Component {
                   <td>{item.lastName}</td>
                   <td>{item.address}</td>
                   <td>
-                    <button className="btn-edit">
+                    <button
+                      onClick={() => this.handleEditUser(item)}
+                      className="btn-edit"
+                    >
                       <i className="fas fa-pencil-alt"></i>
                     </button>
                     <button
