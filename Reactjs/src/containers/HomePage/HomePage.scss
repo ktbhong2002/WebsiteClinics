@@ -21,6 +21,10 @@
     border: 2px solid #d7d7d7;
 }
 
+.slick-disabled{
+    display: none !important;
+}
+
 .slick-prev:before,
 .slick-next:before{
     font-family: FontAwesome !important;

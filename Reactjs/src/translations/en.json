@@ -12,8 +12,8 @@
         "welcome":"Welcome,"
     },
     "home_banner":{
-        "title1":"MEDICAL FOUNDATION",
-        "title2":"COMPREHENSIVE HEALTH CARE",
+        "title1":"MEDICAL PLATFORM",
+        "title2":"COMPREHENSIVE HEALTHCARE",
         "option-child1":"Specialized examination",
         "option-child2":"Remote examination",
         "option-child3":"General examination",
@@ -65,6 +65,10 @@
         "save":"Save",
         "edit":"Edit"
 
+    },
+    "homepage":{
+        "outstanding-doctor":"Outstanding doctor",
+        "more-infor":"See More"
     }
   
 }
