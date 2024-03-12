@@ -140,25 +140,6 @@ class ModalEditUser extends Component {
                 value={this.state.address}
               ></input>
             </div>
-            {/* <div className="input-container min-withd-input">
-              <label>Phone number</label>
-              <input type="text"></input>
-            </div>
-            <div className="input-container min-withd-input">
-              <label>Sex</label>
-              <select className="input-container">
-                <option value="1">Male</option>
-                <option value="0">Female</option>
-              </select>
-            </div>
-            <div className="input-container min-withd-input">
-              <label>Role</label>
-              <select className="input-container">
-                <option value="1">Admin</option>
-                <option value="2">Doctor</option>
-                <option value="3">Patient</option>
-              </select>
-            </div> */}
           </div>
         </ModalBody>
         <ModalFooter>

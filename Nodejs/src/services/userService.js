@@ -1,4 +1,3 @@
-// import { all } from 'sequelize/types/lib/operators';
 import db from "../models/index";
 import bcrypt from "bcryptjs";
 
