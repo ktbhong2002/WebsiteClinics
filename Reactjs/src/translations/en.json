@@ -62,7 +62,10 @@
         "more-infor":"See More"
     },
     "manage-schedule":{
-        "title":"Managing doctor's appointment schedule"
+        "title":"Managing doctor's appointment schedule",
+        "choose-doctor":"Select doctor",
+        "choose-date":"Select date",
+        "save":"Save"
     }
   
 }
