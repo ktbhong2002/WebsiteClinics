@@ -9,15 +9,12 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       doctorId: {
-        allowNull: false,
         type: Sequelize.INTEGER,
       },
       clinicId: {
-        allowNull: false,
         type: Sequelize.INTEGER,
       },
       specialtyId: {
-        allowNull: false,
         type: Sequelize.INTEGER,
       },
       contentHTML: {
@@ -29,7 +26,6 @@ module.exports = {
         type: Sequelize.TEXT("long"),
       },
       description: {
-        allowNull: true,
         type: Sequelize.TEXT("long"),
       },
       createdAt: {
