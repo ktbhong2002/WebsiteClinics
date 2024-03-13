@@ -23,18 +23,6 @@
         
     },
     "menu": {
-        "system": {
-            "header": "Hệ thống",
-            "system-administrator": {
-                "header": "Quản trị hệ thống",
-                "user-manage": "Quản lý người sử dụng",
-                "user-redux": "Quản lý user redux",
-                "register-package-group-or-account": "Đăng ký gói dịch vụ cho nhóm/tài khoản"
-            },
-            "system-parameter": {
-                "header": "Tham số hệ thống"
-            }
-        },
         "admin": {
             "manage-user": "Người dùng",
             "manage-doctor": "Quản lý bác sĩ",
@@ -47,6 +35,9 @@
             "specialty": "Chuyên khoa",
             "manage-handbook": "Quản lý cẩm nang",
             "handbook": "Cẩm nang"
+        },
+        "doctor":{
+            "manage-schedule":"Quản lý kế hoạch khám bệnh"
         }
     },
     "manage-user":{
@@ -67,5 +58,8 @@
     "homepage":{
         "outstanding-doctor":"Bác sĩ nổi bật",
         "more-infor":"XEM THÊM"
+    },
+    "manage-schedule":{
+        "title":"Quản lý kế hoạch khám bệnh của bác sĩ"
     }
 }

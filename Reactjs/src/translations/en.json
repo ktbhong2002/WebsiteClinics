@@ -23,18 +23,6 @@
         
     },
     "menu": {
-        "system": {
-            "header": "System",
-            "system-administrator": {
-                "header": "System Administrator",
-                "user-manage": "User manage",
-                "user-redux": "Manage user using redux manage",
-                "register-package-group-or-account": "Register service package for group/account"
-            },
-            "system-parameter": {
-                "header": "System-parameter"
-            }
-        },
         "admin": {
             "manage-user": "Users",
             "manage-doctor": "Manage doctors",
@@ -47,6 +35,9 @@
             "specialty": "Specialties",
             "manage-handbook": "Manage handbooks",
             "handbook": "Handbooks"
+        },
+        "doctor":{
+            "manage-schedule":"Manage doctor's schedule"
         }
         
     },
@@ -69,6 +60,9 @@
     "homepage":{
         "outstanding-doctor":"Outstanding doctor",
         "more-infor":"See More"
+    },
+    "manage-schedule":{
+        "title":"Managing doctor's appointment schedule"
     }
   
 }
