@@ -5,7 +5,6 @@ import { LANGUAGES } from "../../../utils";
 import { getExtraDoctorInforById } from "../../../services/userService";
 import { FormattedMessage } from "react-intl";
 import NumberFormat from "react-number-format";
-import { lang } from "moment";
 
 class DoctorExtraInfor extends Component {
   constructor(props) {

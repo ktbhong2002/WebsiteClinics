@@ -129,7 +129,7 @@ class ManageSchedule extends Component {
       formatedDate: formatedDate,
     });
     if (res && res.errCode === 0) {
-      toast.error("Save successful!");
+      toast.success("Save successful!");
     } else {
       toast.error("Failed to save!");
       console.log("check bulk: ", res);
