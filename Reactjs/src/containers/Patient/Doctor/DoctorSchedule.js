@@ -102,7 +102,6 @@ class DoctorSchedule extends Component {
       isOpenModalBooking: true,
       dataScheduleTimeModal: time,
     });
-    console.log("check time: ", time);
   };
 
   closeBookingModal = () => {
@@ -158,7 +157,7 @@ class DoctorSchedule extends Component {
                           className={
                             language === LANGUAGES.VI ? "btn-vi" : "btn-en"
                           }
-                          onClick={(item) => this.handleClickScheduleTime(item)}
+                          onClick={() => this.handleClickScheduleTime(item)}
                         >
                           {timeDisplay}
                         </button>

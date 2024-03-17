@@ -16,8 +16,7 @@ class DefaultClass extends Component {
   }
 
   render() {
-    let { language } = this.props;
-    return <div className="doctor-extra-infor-container"></div>;
+    return <div></div>;
   }
 }
 
