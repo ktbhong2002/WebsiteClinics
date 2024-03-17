@@ -73,6 +73,13 @@
             "no-schedule":"No appointments available at this time!",
             "choose":"Choose ",
             "book-free":" and book (free) "
+        },
+        "extra-infor-doctor":{
+            "text-address":"Clinic Address",
+            "price":"Consultation Fee: ",
+            "detail":"View Details",
+            "payment":"Patients can pay by means of: ",
+            "hide-price":"Hide Price List"
         }
     },
     "admin":{

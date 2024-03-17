@@ -22,7 +22,11 @@
 
     .content-down{
         .short-infor{
-            span{
+
+            .currency{
+                margin:0 5px;
+            }
+            .detail{
                 cursor: pointer;
                 color: rgba(72,196,211,1.00);
             }
@@ -30,6 +34,7 @@
         
         .title-price{
             margin-bottom: 10px;
+            text-transform: uppercase;
         }
 
         .detail-infor{
