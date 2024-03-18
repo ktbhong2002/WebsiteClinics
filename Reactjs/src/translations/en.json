@@ -80,6 +80,19 @@
             "detail":"View Details",
             "payment":"Patients can pay by means of: ",
             "hide-price":"Hide Price List"
+        },
+        "booking-modal":{
+            "title":"Schedule an appointment",
+            "fullname":"Full Name",
+            "address":"Address",
+            "email":"Email",
+            "phone-number":"Phone number",
+            "reason":"Reason for examination",
+            "birthday":"Date of birth",
+            "gender":"Sex",
+            "btn-confirm":"Confirm",
+            "btn-cancel":"Cancel",
+            "price-booking":"Free booking"
         }
     },
     "admin":{
