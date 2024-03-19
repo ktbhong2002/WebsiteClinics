@@ -6,7 +6,7 @@ import { getProfileDoctorById } from "../../../services/userService";
 import { LANGUAGES } from "../../../utils";
 import NumberFormat from "react-number-format";
 import _ from "lodash";
-import moment, { lang } from "moment";
+import moment from "moment";
 
 class ProfileDoctor extends Component {
   constructor(props) {
