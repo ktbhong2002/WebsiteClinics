@@ -48,6 +48,10 @@ let initWebRoutes = (app) => {
     "/api/patient-book-appointment",
     paitentController.postBookAppointment
   );
+  router.post(
+    "/api/verify-book-appointment",
+    paitentController.postVerifyBookAppointment
+  );
 
   return app.use("/", router);
 };
