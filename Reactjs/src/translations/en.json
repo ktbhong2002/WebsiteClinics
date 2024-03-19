@@ -59,7 +59,8 @@
     },
     "homepage":{
         "outstanding-doctor":"Outstanding doctor",
-        "more-infor":"See More"
+        "more-infor":"See More",
+        "specialty-popular":"Specialty"
     },
     "manage-schedule":{
         "title":"Managing doctor's appointment schedule",
