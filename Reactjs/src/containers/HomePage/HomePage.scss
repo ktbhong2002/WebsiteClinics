@@ -76,9 +76,9 @@
                 }
 
                 &.section-medical-facility{
-                    background-image: url(../../assets/medical-facility/benh-vien-huu-nghi-viet-duc.png);
-                    height: 170px;
-                    width: 305px;
+                    // background-image: url(../../assets/medical-facility/benh-vien-huu-nghi-viet-duc.png);
+                    // height: 170px;
+                    // width: 305px;
                 }
 
                 &.section-outstanding-doctor{
@@ -110,6 +110,20 @@
         cursor: pointer;
 
         .specialty-name{
+        padding: 10px 0;
+        }
+
+        &:hover{
+            color:#45c3d2;
+        }
+    }
+}
+
+.section-clinic{
+    .clinic-child{
+        cursor: pointer;
+
+        .clinic-name{
         padding: 10px 0;
         }
 
