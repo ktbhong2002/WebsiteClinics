@@ -85,7 +85,7 @@ class ProfileDoctor extends Component {
     let { dataProfile } = this.state;
     let {
       language,
-      isSowDescriptionDoctor,
+      isShowDescriptionDoctor,
       dataTime,
       isShowLinkDetail,
       isShowPrice,
@@ -113,7 +113,7 @@ class ProfileDoctor extends Component {
               {language === LANGUAGES.VI ? nameVi : nameEn}
             </div>
             <div className="down">
-              {isSowDescriptionDoctor === true ? (
+              {isShowDescriptionDoctor === true ? (
                 <>
                   {dataProfile &&
                     dataProfile.Markdown &&

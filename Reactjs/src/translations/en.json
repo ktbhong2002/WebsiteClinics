@@ -28,7 +28,7 @@
             "manage-doctor": "Manage doctors",
             "manage-admin": "Manage admins",
             "crud": "CRUD user",
-            "crud-redux": "CRUD redux",
+            "crud-redux": "User management",
             "manage-clinic": "Manage clinics",
             "clinic": "Clinics",
             "manage-specialty": "Manage specialties",
@@ -43,6 +43,7 @@
         
     },
     "manage-user":{
+        "title":"User management",
         "add":"Add a new user ",
         "email":"Email",
         "password":"Password",
@@ -58,10 +59,22 @@
         "edit":"Edit"
 
     },
+    "manage-handbook":{
+        "title":"Title",
+        "add":"Add a new handbook ",
+        "category":"Category",
+        "image":"Avatar",
+        "sapo" : "Sapo",
+        "save":"Save",
+        "edit":"Edit",
+        "action":"Action"
+
+    },
     "homepage":{
         "outstanding-doctor":"Outstanding doctor",
         "more-infor":"See More",
-        "specialty-popular":"Specialty"
+        "specialty-popular":"Specialty",
+        "handbooks": "Handbooks"
     },
     "manage-schedule":{
         "title":"Managing doctor's appointment schedule",
@@ -99,7 +112,7 @@
     },
     "admin":{
         "manage-doctor":{
-            "title":"Create new doctor information",
+            "title":"Doctor information",
             "select-doctor":"The doctor selection",
             "intro":"Doctor's information",
             "save":"Save changes",
@@ -112,7 +125,15 @@
             "note":"Note",
             "specialty":"Specialty",
             "clinic":"Clinic"
+        },
+        "manage-clinic":{
+            "title":"Clinic management",
+            "name-clinic":"Clinic name",
+            "address-clinic":"Clinic address",
+            "picture-clinic":"Clinic photo",
+            "add":"Save"
         }
+
     }
   
 }

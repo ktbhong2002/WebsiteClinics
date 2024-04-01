@@ -24,6 +24,7 @@ class ManageSchedule extends Component {
       rangeTime: [],
     };
   }
+
   componentDidMount() {
     this.props.fetchAllDoctors();
     this.props.fetchAllScheduleTime();
@@ -45,12 +46,6 @@ class ManageSchedule extends Component {
         rangeTime: data,
       });
     }
-    // if (prevProps.language !== this.props.language) {
-    //   let dataSelect = this.buildDataInputSelect(this.props.allDoctors);
-    //   this.setState({
-    //     listDoctors: dataSelect,
-    //   });
-    // }
   }
 
   buildDataInputSelect = (inputData) => {
@@ -104,8 +99,6 @@ class ManageSchedule extends Component {
       toast.error("Invalid selected doctor!");
       return;
     }
-    // let formatedDate = moment(currentDate).format(dateFormat.SEND_TO_SERVER);
-    // let formatedDate = moment(currentDate).unix();
     let formatedDate = new Date(currentDate).getTime();
 
     if (rangeTime && rangeTime.length > 0) {
@@ -138,8 +131,9 @@ class ManageSchedule extends Component {
 
   render() {
     let { rangeTime } = this.state;
-    let { language } = this.props;
-    let yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
+    let { language, userRole } = this.props;
+    console.log(userRole);
+    const yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
 
     return (
       <div className="manage-schedule-container">
@@ -148,16 +142,18 @@ class ManageSchedule extends Component {
         </div>
         <div className="container">
           <div className="row">
-            <div className="col-6">
-              <label>
-                <FormattedMessage id="manage-schedule.choose-doctor" />
-              </label>
-              <Select
-                value={this.state.selectedDoctor}
-                onChange={this.handleChangeSelect}
-                options={this.state.listDoctors}
-              />
-            </div>
+            {userRole === "ADMIN" && (
+              <div className="col-6">
+                <label>
+                  <FormattedMessage id="manage-schedule.choose-doctor" />
+                </label>
+                <Select
+                  value={this.state.selectedDoctor}
+                  onChange={this.handleChangeSelect}
+                  options={this.state.listDoctors}
+                />
+              </div>
+            )}
             <div className="col-6 form-group">
               <label>
                 <FormattedMessage id="manage-schedule.choose-date" />
@@ -209,6 +205,7 @@ const mapStateToProps = (state) => {
     language: state.app.language,
     allDoctors: state.admin.allDoctors,
     allScheduleTime: state.admin.allScheduleTime,
+    userRole: state.user.role,
   };
 };
 

@@ -5,6 +5,7 @@ import { FormattedMessage } from "react-intl";
 import { LANGUAGES } from "../../utils";
 import { changeLanguageApp } from "../../store/actions";
 import { withRouter } from "react-router";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 class HomeHeader extends Component {
   changeLanguage = (language) => {
@@ -31,36 +32,42 @@ class HomeHeader extends Component {
               ></div>
             </div>
             <div className="center-content">
-              <div className="child-content">
-                <div>
-                  <b>
-                    <FormattedMessage id="home_header.specialty" />
-                  </b>
+              <Link to="/specialty">
+                <div className="child-content">
+                  <div>
+                    <b>
+                      <FormattedMessage id="home_header.specialty" />
+                    </b>
+                  </div>
+                  <div className="subs-title">
+                    <FormattedMessage id="home_header.search-doctor" />
+                  </div>
                 </div>
-                <div className="subs-title">
-                  <FormattedMessage id="home_header.search-doctor" />
+              </Link>
+              <Link to="/clinic">
+                <div className="child-content">
+                  <div>
+                    <b>
+                      <FormattedMessage id="home_header.health-facility" />
+                    </b>
+                  </div>
+                  <div className="subs-title">
+                    <FormattedMessage id="home_header.select-room" />
+                  </div>
                 </div>
-              </div>
-              <div className="child-content">
-                <div>
-                  <b>
-                    <FormattedMessage id="home_header.health-facility" />
-                  </b>
+              </Link>
+              <Link to="/doctors">
+                <div className="child-content">
+                  <div>
+                    <b>
+                      <FormattedMessage id="home_header.doctor" />
+                    </b>
+                  </div>
+                  <div className="subs-title">
+                    <FormattedMessage id="home_header.select-doctor" />
+                  </div>
                 </div>
-                <div className="subs-title">
-                  <FormattedMessage id="home_header.select-room" />
-                </div>
-              </div>
-              <div className="child-content">
-                <div>
-                  <b>
-                    <FormattedMessage id="home_header.doctor" />
-                  </b>
-                </div>
-                <div className="subs-title">
-                  <FormattedMessage id="home_header.select-doctor" />
-                </div>
-              </div>
+              </Link>
               <div className="child-content">
                 <div>
                   <b>
@@ -85,7 +92,7 @@ class HomeHeader extends Component {
                 }
               >
                 <span onClick={() => this.changeLanguage(LANGUAGES.VI)}>
-                  VI
+                  🇻🇳
                 </span>
               </div>
               <div
@@ -96,7 +103,7 @@ class HomeHeader extends Component {
                 }
               >
                 <span onClick={() => this.changeLanguage(LANGUAGES.EN)}>
-                  EN
+                  🇬🇧
                 </span>
               </div>
             </div>

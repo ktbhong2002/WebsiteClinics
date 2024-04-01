@@ -4,6 +4,7 @@ import { FormattedMessage } from "react-intl";
 import Slider from "react-slick";
 import { getAllClinic } from "../../../services/userService";
 import { withRouter } from "react-router";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 class medicalFacility extends Component {
   constructor(props) {
@@ -34,10 +35,20 @@ class medicalFacility extends Component {
         <div className="section-container">
           <div className="section-header">
             <span className="title-section">Cơ sở y tế</span>
-            <button className="btn-section">XEM THÊM</button>
+            <Link to="/clinic">
+              <button className="btn-section">
+                <FormattedMessage id="homepage.more-infor" />
+              </button>
+            </Link>
           </div>
           <div className="section-body">
-            <Slider {...this.props.settings}>
+            <Slider
+              {...{
+                ...this.props.settings,
+                slidesToShow: 3,
+                slidesToScroll: 3,
+              }}
+            >
               {dataClinics &&
                 dataClinics.length > 0 &&
                 dataClinics.map((item, index) => {
@@ -47,11 +58,17 @@ class medicalFacility extends Component {
                       key={index}
                       onClick={() => this.handleViewDetailClinic(item)}
                     >
-                      <div
-                        className="bg-image section-medical-facility"
-                        style={{ backgroundImage: `url(${item.image})` }}
-                      />
-                      {/* kich thuoc anh 5,5 */}
+                      <center>
+                        <div
+                          className="bg-image"
+                          style={{
+                            backgroundImage: `url(${item.image})`,
+                            backgroundSize: "contain", // Sử dụng backgroundSize thay vì background-size
+                          }}
+                        />
+                      </center>
+
+                      {/* kích thước ảnh 5x5 */}
                       <div className="clinic-name">{item.name}</div>
                     </div>
                   );

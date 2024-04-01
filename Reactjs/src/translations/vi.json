@@ -26,9 +26,9 @@
         "admin": {
             "manage-user": "Người dùng",
             "manage-doctor": "Quản lý bác sĩ",
-            "manage-admin": "Quản lý admin",
+            "manage-admin": "Quản lý người dùng",
             "crud": "CRUD user",
-            "crud-redux": "CRUD redux",
+            "crud-redux": "Quản lý người dùng",
             "manage-clinic": "Quản lý phòng khám",
             "clinic": "Phòng khám",
             "manage-specialty": "Quản lý chuyên khoa",
@@ -42,6 +42,7 @@
         }
     },
     "manage-user":{
+        "title":"Quản lý người dùng",
         "add":"Thêm mới người dùng",
         "email":"Email",
         "password":"Mật khẩu",
@@ -56,10 +57,22 @@
         "save":"Lưu",
         "edit":"Lưu thay đổi"
     },
+    "manage-handbook":{
+        "title":"Tiêu đề",
+        "add":"Thêm mới bài viết",
+        "category":"Thể loại",
+        "image":"Ảnh bìa",
+        "sapo" : "Tóm tắt",
+        "save":"Lưu",
+        "edit":"Sửa",
+        "action":"Hành động"
+    },
+
     "homepage":{
         "outstanding-doctor":"Bác sĩ nổi bật",
         "more-infor":"XEM THÊM",
-        "specialty-popular":"Chuyên khoa"
+        "specialty-popular":"Chuyên khoa",
+        "handbooks": "Cẩm nang" 
     },
     "manage-schedule":{
         "title":"Quản lý kế hoạch khám bệnh của bác sĩ",
@@ -97,7 +110,7 @@
     },
     "admin":{
         "manage-doctor":{
-            "title":"Danh sách bác sĩ",
+            "title":"Thông tin bác sĩ",
             "select-doctor":"Chọn bác sĩ",
             "intro":"Thông tin giới thiệu",
             "save":"Lưu thay đổi",
@@ -110,6 +123,14 @@
             "note":"Ghi chú",
             "specialty":"Chọn chuyên khoa",
             "clinic":"Chọn phòng khám"
+        },
+        "manage-clinic":{
+            "title":"Quản lý phòng khám ",
+            "name-clinic":"Tên phòng khám",
+            "address-clinic":"Địa chỉ phòng khám",
+            "picture-clinic":"Ảnh phòng khám",
+            "add":"Lưu"
         }
+
     }
 }

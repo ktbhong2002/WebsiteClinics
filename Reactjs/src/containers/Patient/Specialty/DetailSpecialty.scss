@@ -70,3 +70,39 @@ select{
         }
     }
 }
+
+.description-specialty {
+    position: relative;
+    //width: 100%;
+    height: 100%; /* Điều chỉnh chiều cao của phần mô tả tùy ý */
+    //background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  .description-specialty::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.5); /* Màu nền mờ, có thể điều chỉnh độ trong suốt tại đây */
+    filter: blur(7px); /* Điều chỉnh mức độ mờ ở đây, ví dụ 5px */
+  }
+  
+  .gradient-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1)); /* Điều chỉnh mức độ mờ ở đây bằng cách điều chỉnh alpha (0 đến 1) */
+  }
+  
+  /* Nếu bạn muốn làm cho hình ảnh con của phần mô tả to hơn */
+  .description-specialty .bg-image {
+    width: 100%; /* Chiều rộng của hình ảnh con bằng với phần mô tả */
+    height: 100%; /* Chiều cao của hình ảnh con bằng với phần mô tả */
+    border-radius: 10px; /* Tuỳ chỉnh bo góc cho hình ảnh */
+  }

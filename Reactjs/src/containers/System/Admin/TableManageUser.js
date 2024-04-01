@@ -41,7 +41,17 @@ class TableManageUser extends Component {
   }
 
   handleDeleteUser = (user) => {
-    this.props.deleteAUserRedux(user.id);
+    try {
+      // Hiển thị hộp thoại xác nhận trước khi xóa người dùng
+      let confirmDelete = window.confirm(
+        "Bạn có chắc chắn muốn xóa người dùng này không?"
+      );
+      if (confirmDelete) {
+        this.props.deleteAUserRedux(user.id);
+      }
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   handleEditUser = (user) => {
@@ -50,15 +60,24 @@ class TableManageUser extends Component {
 
   render() {
     let arrUsers = this.state.usersRedux;
+    console.log(arrUsers);
     return (
       <React.Fragment>
         <table id="TableManageUser">
           <tbody>
             <tr>
-              <th>Email</th>
-              <th>First name</th>
-              <th>Last name</th>
-              <th>Address</th>
+              <th>
+                <FormattedMessage id={"manage-user.email"} />
+              </th>
+              <th>
+                <FormattedMessage id={"manage-user.first-name"} />
+              </th>
+              <th>
+                <FormattedMessage id={"manage-user.last-name"} />
+              </th>
+              <th>
+                <FormattedMessage id={"manage-user.address"} />
+              </th>
               <th>Action</th>
             </tr>
 
@@ -91,11 +110,11 @@ class TableManageUser extends Component {
           </tbody>
         </table>
 
-        <MdEditor
+        {/* <MdEditor
           style={{ height: "500px" }}
           renderHTML={(text) => mdParser.render(text)}
           onChange={handleEditorChange}
-        />
+        /> */}
       </React.Fragment>
     );
   }

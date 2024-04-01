@@ -1,5 +1,8 @@
-.detail-specialty-container{
-    .description-specialty{
+.detail-clinic-container{
+    .custom-bg-image{
+
+    }
+    .description-clinic{
         background-color: white;
         padding: 10px;
         margin: 15px 0;
@@ -21,11 +24,50 @@ select{
 }
     }
 
-    .detail-specialty-body{
+    .detail-clinic-body{
         padding: 0 100px;
         background: #eee;
         display: flex;
         flex-direction: column;
+    }
+
+    .section-customize-clinic-detail{
+        background-color: white;
+        display: flex;
+        align-items: center;
+        padding: 5px;
+        cursor: pointer;
+        border-color: #45c3d2;
+        border-radius: 18px;
+        border: 1px solid #45c3d2;
+
+        
+      
+        &:hover {
+          color: #45c3d2;
+          border-color: #45c3d2; /* Thay đổi màu viền khi hover */
+        }
+    }
+    .bg-image {
+        border-radius: 20px;
+        width: 300px;
+        height: 120px;
+        background-size: cover; /* Hiển thị ảnh sao cho lớn nhất có thể nhưng vẫn giữ tỷ lệ khung hình */
+        background-position: center; /* Canh chỉnh vị trí của hình ảnh */
+        background-repeat: no-repeat; /* Ngăn lặp lại ảnh */
+        margin-right: 10px;
+      }
+    
+      .clinic-name {
+          font-weight: 700 !important; /* Tương đương với việc in đậm */
+          font-size: 30px !important; /* Kích thước font 20px */
+          margin-right: 0px !important;
+  
+      }
+      .clinic-address {
+        font-size: 16px !important; /* Kích thước font 20px */
+        margin-right: 0px !important;
+
     }
 
     .each-doctor{

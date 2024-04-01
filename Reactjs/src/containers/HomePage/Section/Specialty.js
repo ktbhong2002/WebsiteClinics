@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { FormattedMessage } from "react-intl";
 import { getAllSpecialty } from "../../../services/userService";
 import Slider from "react-slick";
@@ -36,12 +37,20 @@ class Specialty extends Component {
             <span className="title-section">
               <FormattedMessage id="homepage.specialty-popular" />
             </span>
-            <button className="btn-section">
-              <FormattedMessage id="homepage.more-infor" />
-            </button>
+            <Link to="/specialty">
+              <button className="btn-section">
+                <FormattedMessage id="homepage.more-infor" />
+              </button>
+            </Link>
           </div>
           <div className="section-body">
-            <Slider {...this.props.settings}>
+            <Slider
+              {...{
+                ...this.props.settings,
+                slidesToShow: 4,
+                slidesToScroll: 4,
+              }}
+            >
               {dataSpecialty &&
                 dataSpecialty.length > 0 &&
                 dataSpecialty.map((item, index) => {
@@ -56,7 +65,9 @@ class Specialty extends Component {
                         style={{ backgroundImage: `url(${item.image})` }}
                       />
                       {/* kich thuoc anh 5,5 */}
-                      <div className="specialty-name">{item.name}</div>
+                      <center>
+                        <div className="specialty-name">{item.name}</div>
+                      </center>
                     </div>
                   );
                 })}

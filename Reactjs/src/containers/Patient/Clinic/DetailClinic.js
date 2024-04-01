@@ -62,18 +62,36 @@ class DetailClinic extends Component {
   render() {
     let { arrDoctorId, dataDetailClinic } = this.state;
     let { language } = this.props;
-    console.log("check state: ", this.state);
     return (
-      <div className="detail-specialty-container">
+      <div className="detail-clinic-container">
         <HomeHeader />
-        <div className="detail-specialty-body">
-          <div className="description-specialty">
+        <div className="detail-clinic-body">
+          <div className="description-clinic">
+            <div className="section-customize-clinic-detail specialty-child">
+              <img
+                className="bg-image"
+                src={dataDetailClinic.image}
+                alt="Clinic Image"
+                style={{ width: "auto", height: "auto" }}
+              />
+              <div className="item-content">
+                <div className="clinic-name">{dataDetailClinic.name}</div>
+                <div className="clinic-address">
+                  📍 {dataDetailClinic.address}
+                </div>
+                {/* Các thông tin khác nếu cần */}
+              </div>
+            </div>
             {dataDetailClinic && !_.isEmpty(dataDetailClinic) && (
               <>
-                <div>{dataDetailClinic.name}</div>
                 <div
                   dangerouslySetInnerHTML={{
                     __html: dataDetailClinic.descriptionHTML,
+                  }}
+                  style={{
+                    marginBottom: "5px",
+                    marginTop: "10px",
+                    fontSize: "17px",
                   }}
                 ></div>
               </>
@@ -89,7 +107,7 @@ class DetailClinic extends Component {
                     <div className="profile-doctor">
                       <ProfileDoctor
                         doctorId={item}
-                        isSowDescriptionDoctor={true}
+                        isShowDescriptionDoctor={true}
                         isShowLinkDetail={true}
                         isShowPrice={false}
                         //   dataTime={dataTime}

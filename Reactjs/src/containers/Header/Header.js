@@ -7,6 +7,7 @@ import { adminMenu, doctorMenu } from "./menuApp";
 import "./Header.scss";
 import { LANGUAGES, USER_ROLE } from "../../utils";
 import _ from "lodash";
+
 class Header extends Component {
   constructor(props) {
     super(props);
@@ -14,15 +15,16 @@ class Header extends Component {
       menuApp: [],
     };
   }
+
   handleChangeLanguage = (language) => {
     this.props.changeLanguageAppRedux(language);
   };
 
   componentDidMount() {
-    let { userInfo } = this.props;
+    const { userInfo } = this.props;
     let menu = [];
     if (userInfo && !_.isEmpty(userInfo)) {
-      let role = userInfo.roleId;
+      const role = userInfo.roleId;
       if (role === USER_ROLE.ADMIN) {
         menu = adminMenu;
       }
@@ -33,7 +35,6 @@ class Header extends Component {
     this.setState({
       menuApp: menu,
     });
-    console.log(this.props.userInfo);
   }
 
   render() {
@@ -41,7 +42,7 @@ class Header extends Component {
 
     return (
       <div className="header-container">
-        {/* thanh navigator */}
+        {/* Thanh navigator */}
         <div className="header-tabs-container">
           <Navigator menus={this.state.menuApp} />
         </div>
@@ -56,7 +57,7 @@ class Header extends Component {
             }
             onClick={() => this.handleChangeLanguage(LANGUAGES.VI)}
           >
-            VI
+            🇻🇳
           </span>
           <span
             className={
@@ -64,13 +65,13 @@ class Header extends Component {
             }
             onClick={() => this.handleChangeLanguage(LANGUAGES.EN)}
           >
-            EN
+            🇻🇬
           </span>
-          {/* nút logout */}
+          {/* Nút logout */}
           <div
             className="btn btn-logout"
             onClick={processLogout}
-            title="logout"
+            title="Logout"
           >
             <i className="fas fa-sign-out-alt"></i>
           </div>
@@ -95,4 +96,5 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(actions.changeLanguageApp(language)),
   };
 };
+
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

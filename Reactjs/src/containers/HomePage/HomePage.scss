@@ -1,24 +1,32 @@
 //reset slick slider css
 .slick-prev{
     left: -25px !important;
-    z-index: 1000 !important;
+    z-index: 95 !important;
     height: 48px !important;
     width: 44px !important;
     background: #fff !important;
-    border: 2px solid #d7d7d7;
+    border: 2px solid #d7d7d7 !important;
+    border-color: #a3e3ea !important;
+    border-radius: 20%;
 
     &:hover{
-        background: #ecebeb !important;
+        background: #a3e3ea !important;
     }
 }
 
 .slick-next{
     right: -25px !important;
-    z-index: 1000 !important;
+    z-index: 95 !important;
     height: 48px !important;
     width: 44px !important;
     background: #fff !important;
-    border: 2px solid #d7d7d7;
+    border: 2px solid #e81b1b !important;
+    z-index: 100;
+    border-color: #a3e3ea !important;
+    border-radius: 20%;
+    &:hover{
+        background: #a3e3ea !important;
+    }
 }
 
 .slick-disabled{
@@ -27,12 +35,14 @@
 
 .slick-prev:before,
 .slick-next:before{
+    z-index: 95 !important;
     font-family: FontAwesome !important;
     color: rgb(54, 48, 48) !important;
     // content:"\e258" !important;
 }
 
 .section-share{
+    
     &.section-specialty{
         background: #f5f5f5;
     }
@@ -52,21 +62,26 @@
 
         .section-customize{
             .bg-image{
-                width: 300px;
+                width: 100%;
                 height: 180px;
-                background-position: center center;
+                background-position: center center !important;
                 background-repeat:no-repeat;
                 background-size: cover;
-                background-color: #eee;
-                margin-bottom:10px ;
+                //background-color: #eee;
+                // margin-bottom:10px ;
 
                 &.section-sepcialty{
+                    border-radius: 20px !important;
                     // background-image: url(../../assets/specialty/co-xuong-khop.png);
                     .specialty-child{
                         cursor: pointer;
 
                         .specialty-name{
-                        padding: 10px 0;
+                            text-align: center !important;
+                            justify-content: center !important;
+                            font-size: medium;
+                            font-weight: 300;
+                            padding: 10px 0;
                         }
 
                         &:hover{
@@ -76,41 +91,52 @@
                 }
 
                 &.section-medical-facility{
+                    border-radius: 20px !important;
+                    background-position: center center !important;
                     // background-image: url(../../assets/medical-facility/benh-vien-huu-nghi-viet-duc.png);
                     // height: 170px;
                     // width: 305px;
                 }
 
                 &.section-outstanding-doctor{
+                    // border-radius: 20px !important;
                     // background-image: url(../../assets/outstanding-doctor/bs-nhan.png);
                     height: 130px;
                     width: 130px;
-                    border-radius: 50%;
+                    // border-radius: 50%;
                 }
                 &.section-handbook{
                     background-image: url(../../assets/handbook/5-dia-chi-nha-khoa-nieng-rang-tra-gop-cho-sinh-vien-tai-ha-noi.png);
                     height: 160px;
                     width: 300px;
+                    margin-bottom:20px ;
+                    padding: 100px 0;
                 }
             }
+            
         }
     }
 }
 
 .section-outstanding-doctor{
+    border-radius: 20px !important;
+    // margin-bottom:20px ;
     .outer-bg{
         display: flex;
         justify-content: center;
-        margin-bottom:10px ;
+        margin-bottom:0px ;
     }
 }
 
 .section-specialty{
     .specialty-child{
+        border-radius: 20px !important;
         cursor: pointer;
 
         .specialty-name{
         padding: 10px 0;
+        font-size: medium;
+            font-weight: 300;
         }
 
         &:hover{
@@ -119,33 +145,64 @@
     }
 }
 
-.section-clinic{
-    .clinic-child{
+.section-clinic {
+    .clinic-child {
+        background-position: center !important;
+        font-size: larger !important;
+        border-radius: 20px !important;
         cursor: pointer;
-
-        .clinic-name{
-        padding: 10px 0;
+    
+        .custom-bg-image {
+            background-position: center center !important;
+            display: flex !important;
+            background-size: cover !important;
+            border-radius: 20px 20px 20px 20px;
         }
-
-        &:hover{
-            color:#45c3d2;
+    
+        .clinic-name {
+            text-align: center;
+            font-size: medium;
+            font-weight: 300;
+            padding: 10px 0;
+        }
+    
+        &:hover {
+            color: #45c3d2;
         }
     }
 }
 
-.section-customize{
+
+
+.section-customize {
     padding: 5px;
     cursor: pointer;
+    &:hover {
+        color: #45c3d2;
+        // transform: translateY(-10px);
+        border: 2px solid rgb(224, 224, 224);
+        border-color: #45c3d2; /* Thay đổi màu viền khi hover */
+        border-radius: 20px !important;
+    }
 
-    .customize-border{
+    .customize-border {
         border: 2px solid rgb(224, 224, 224);
         padding: 15px;
+        border-radius: 20px !important;
+    }
+
+    .specialty-child {
+        &:hover {
+            color: #45c3d2;
+        }
     }
 }
 
 
 .section-share{
-    height: 330px;
+    height: 350px;
+    //background-image: url('https://www.tailwindcss.cn/_next/static/media/docs@tinypng.d9e4dcdc.png');
+
 
     .section-container{
         margin: 0 100px;
@@ -162,17 +219,18 @@
                 font-weight: 600;
             }
 
-            .btn-section{
+            .btn-section {
+                border-radius: 15px !important; /* Thay đổi giá trị border-radius */
                 background: #ebebeb;
                 float: right;
-                padding: 10px 15px;
+                padding: 10px 20px; /* Thay đổi giá trị padding */
                 border: none;
                 outline: none;
-                display: block;
+                display: inline-block; /* Sử dụng inline-block thay vì block */
                 cursor: pointer;
                 color: black;
-
-                &:hover{
+            
+                &:hover {
                     color: #fff;
                     background: #f7b800;
                 }
@@ -203,4 +261,10 @@
         display: flex;
         gap:50px
     }
+}
+
+
+.bg-image-clinic{
+    width: 100%;
+    height: 100%;
 }

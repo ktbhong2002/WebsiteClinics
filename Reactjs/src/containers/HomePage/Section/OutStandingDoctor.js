@@ -5,6 +5,7 @@ import Slider from "react-slick";
 import * as actions from "../../../store/actions";
 import { LANGUAGES } from "../../../utils";
 import { withRouter } from "react-router";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 class OutStandingDoctor extends Component {
   constructor(props) {
@@ -43,12 +44,20 @@ class OutStandingDoctor extends Component {
             <span className="title-section">
               <FormattedMessage id="homepage.outstanding-doctor" />
             </span>
-            <button className="btn-section">
-              <FormattedMessage id="homepage.more-infor" />
-            </button>
+            <Link to="/doctors">
+              <button className="btn-section">
+                <FormattedMessage id="homepage.more-infor" />
+              </button>
+            </Link>
           </div>
           <div className="section-body">
-            <Slider {...this.props.settings}>
+            <Slider
+              {...{
+                ...this.props.settings,
+                slidesToShow: 4,
+                slidesToScroll: 4,
+              }}
+            >
               {arrDocotors &&
                 arrDocotors.length > 0 &&
                 arrDocotors.map((item, index) => {
@@ -59,8 +68,8 @@ class OutStandingDoctor extends Component {
                       "base64"
                     ).toString("binary");
                   }
-                  let nameVi = `${item.positionData.valueVi},${item.lastName} ${item.firstName}`;
-                  let nameEn = `${item.positionData.valueEn},${item.firstName} ${item.lastName}`;
+                  let nameVi = `${item.positionData.valueVi} ${item.lastName} ${item.firstName}`;
+                  let nameEn = `${item.positionData.valueEn} ${item.firstName} ${item.lastName}`;
                   return (
                     <div
                       className="section-customize"
@@ -76,9 +85,12 @@ class OutStandingDoctor extends Component {
                         </div>
                         <div className="position text-center">
                           <div>
-                            {language === LANGUAGES.VI ? nameVi : nameEn}
+                            <strong style={{ fontSize: "medium" }}>
+                              {language === LANGUAGES.VI ? nameVi : nameEn}
+                            </strong>
                           </div>
-                          <div>Thần kinh</div>
+                          {/* <div>Thần kinh</div> */}
+                          <div className="">{item.name}</div>
                         </div>
                       </div>
                     </div>

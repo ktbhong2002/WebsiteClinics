@@ -82,7 +82,29 @@ const getAllDetailSpecialtyById = (data) => {
   );
 };
 
+const getAllSpecialties = () => {
+  return axios.get(`/api/get-all-specialty`);
+};
+
+const createNewSpecialtyService = (data) => {
+  return axios.post("/api/create-new-specialty", data);
+};
+
+const deleteSpecialtyService = (specialtyId) => {
+  return axios.delete("/api/delete-specialty", {
+    data: { id: specialtyId },
+  });
+};
+
+const editSpecialtyService = (inputData) => {
+  return axios.put("/api/edit-specialty", inputData);
+};
+
 const createNewClinic = (data) => {
+  return axios.post(`/api/create-new-clinic`, data);
+};
+
+const createNewClinicService = (data) => {
   return axios.post(`/api/create-new-clinic`, data);
 };
 
@@ -90,8 +112,22 @@ const getAllClinic = () => {
   return axios.get(`/api/get-all-clinic`);
 };
 
+const getAllClinics = () => {
+  return axios.get(`/api/get-all-clinic`);
+};
+
 const getAllDetailClinicById = (data) => {
   return axios.get(`/api/get-detail-clinic-by-id?id=${data.id}`);
+};
+
+const editClinicService = (inputData) => {
+  return axios.put("/api/edit-clinic", inputData);
+};
+
+const deleteClinicService = (clinicId) => {
+  return axios.delete("/api/delete-clinic", {
+    data: { id: clinicId },
+  });
 };
 
 const getAllPatientForDoctor = (data) => {
@@ -102,6 +138,29 @@ const getAllPatientForDoctor = (data) => {
 
 const postSendRemedy = (data) => {
   return axios.post(`/api/send-remedy`, data);
+};
+
+const crawlNewHandbook = (data) => {
+  return axios.post(`/api/crawl-new-handbook`);
+};
+const getAllHandbooks = (data) => {
+  return axios.get(`/api/get-all-handbook`);
+};
+const getAllHandbook = (data) => {
+  return axios.get(`/api/get-all-handbook`);
+};
+
+const deleteHandbookService = (handbookId) => {
+  return axios.delete("/api/delete-handbook-by-id", {
+    data: { id: handbookId },
+  });
+};
+const editHandbookService = (inputData) => {
+  return axios.put("/api/edit-handbook", inputData);
+};
+
+const getAllDetailHandbookById = (data) => {
+  return axios.get(`/api/get-detail-handbook-by-id?id=${data.id}`);
 };
 
 export {
@@ -125,8 +184,22 @@ export {
   getAllSpecialty,
   getAllDetailSpecialtyById,
   createNewClinic,
+  createNewClinicService,
   getAllClinic,
+  getAllClinics,
   getAllDetailClinicById,
   getAllPatientForDoctor,
   postSendRemedy,
+  getAllHandbooks,
+  getAllHandbook,
+  crawlNewHandbook,
+  deleteHandbookService,
+  editHandbookService,
+  getAllDetailHandbookById,
+  createNewSpecialtyService,
+  deleteSpecialtyService,
+  editSpecialtyService,
+  getAllSpecialties,
+  editClinicService,
+  deleteClinicService,
 };

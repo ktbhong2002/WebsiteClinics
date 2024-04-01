@@ -50,6 +50,7 @@ class UserManage extends Component {
       isOpenModaEditlUser: !this.state.isOpenModaEditlUser,
     });
   };
+
   createNewUser = async (data) => {
     try {
       let response = await createNewUserService(data);
@@ -69,11 +70,19 @@ class UserManage extends Component {
 
   handleDeleteUser = async (user) => {
     try {
-      let res = await deleteUserService(user.id);
-      if (res && res.errCode === 0) {
-        await this.getAllUsersFromReact();
-      } else {
-        alert(res.errMessage);
+      // Hiển thị hộp thoại xác nhận trước khi xóa người dùng
+      let confirmDelete = window.confirm(
+        "Bạn có chắc chắn muốn xóa người dùng này không?"
+      );
+
+      // Nếu người dùng đồng ý xóa
+      if (confirmDelete) {
+        let res = await deleteUserService(user.id);
+        if (res && res.errCode === 0) {
+          await this.getAllUsersFromReact();
+        } else {
+          alert(res.errMessage);
+        }
       }
     } catch (e) {
       console.log(e);
@@ -129,7 +138,7 @@ class UserManage extends Component {
             <i className="fas fa-plus"></i>Add new user
           </button>
         </div>
-        <div className="users-tabel mt-3 mx-1">
+        <div className="users-table mt-3 mx-1">
           <table id="customers">
             <tbody>
               <tr>

@@ -6,6 +6,7 @@ position: sticky;
 top:0;
 background-color: rgb(252, 252, 252);
 z-index: 100;
+border-bottom: 1px solid #ccc;
 
 .home-header-content{
     width: 100%;
@@ -22,7 +23,7 @@ z-index: 100;
             height: 100%;
             width: 100%;
             cursor: pointer;
-            transform: scale(0.5,0.5);
+            transform: scale(0.6,0.6);
         }
         i{
             font-size: 25px;
@@ -36,11 +37,13 @@ z-index: 100;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        font-size: 17px;
 
         .child-content{
+            color: black;
             .subs-title{
                 font-weight: 400;
-                font-size: 12px;
+                font-size: 14px;
             }
         }
     }
@@ -64,6 +67,7 @@ z-index: 100;
         }
 
         .language-vi{
+            font-size: 30px;
             cursor: pointer;
             opacity: 0.2;
 
@@ -77,6 +81,7 @@ z-index: 100;
             }
         }
         .language-en{
+            font-size: 30px;
             margin: 0 10px;
             cursor: pointer;
             opacity: 0.2;

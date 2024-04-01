@@ -1,0 +1,71 @@
+.section-customize-doctor {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    cursor: pointer;
+    border-color: #45c3d2;
+    border-radius: 18px;
+    border: 1px solid #45c3d2;
+  
+    &:hover {
+      color: #45c3d2;
+      transform: translateY(-10px);
+      border-color: #45c3d2; /* Thay đổi màu viền khi hover */
+    }
+  
+    .bg-image {
+      border-radius: 15px;
+      width: 130px !important;
+      height: 130px !important;
+      background-size: cover; /* Hiển thị ảnh sao cho lớn nhất có thể nhưng vẫn giữ tỷ lệ khung hình */
+      background-position: center; /* Canh chỉnh vị trí của hình ảnh */
+      background-repeat: no-repeat; /* Ngăn lặp lại ảnh */
+      margin-right: 10px;
+    }
+  
+    .doctor-name {
+        font-weight: 700 !important; /* Tương đương với việc in đậm */
+        font-size: 20px !important; /* Kích thước font 20px */
+        // margin-right: 500px !important;
+
+    }
+  
+  }
+  .section-customize-doctor-row {
+    display: flex;
+  }
+  
+  .section-customize-doctor {
+    flex: 1;
+    margin-right: 10px; /* Khoảng cách giữa các mục */
+    .last-child {
+      margin-right: 0; /* Loại bỏ khoảng cách cho mục cuối cùng */
+    }
+  }
+  .section-customize-doctor-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Các mục sẽ căn cứ vào lề trái và lề phải của container */
+    gap: 10px; /* Khoảng cách giữa các mục */
+  }
+  
+  .section-customize-doctor.doctor-child {
+   // flex-basis: calc(50% - 5px); /* Căn chỉnh chiều rộng cho mỗi mục */
+  }
+  
+  .section-body-doctor {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Khoảng cách giữa các mục */
+  }
+  
+  .section-customize-doctor.doctor-child {
+    flex-basis: calc(100% - 25px); /* Căn chỉnh chiều rộng cho mỗi mục */
+    max-width: calc(100% - 25px); /* Giới hạn kích thước tối đa của mỗi mục */
+    margin-bottom: 10px; /* Khoảng cách dưới cho mỗi mục */
+    height: 140px;
+    &:hover{
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Tạo hiệu ứng bóng xung quanh khi di chuột vào */
+    }
+  }

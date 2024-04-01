@@ -1,0 +1,105 @@
+.section-customize-handbook {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  cursor: pointer;
+  border-color: #45c3d2;
+  border-radius: 20px;
+  border: 1px solid #45c3d2;
+
+  &:hover {
+    color: #45c3d2;
+    transform: translateY(-10px);
+    border-color: #45c3d2; /* Thay đổi màu viền khi hover */
+  }
+
+  .bg-image {
+    border-radius: 20px;
+    width: 100px;
+    height: 100px;
+    background-size: cover; /* Hiển thị ảnh sao cho lớn nhất có thể nhưng vẫn giữ tỷ lệ khung hình */
+    background-position: center; /* Canh chỉnh vị trí của hình ảnh */
+    background-repeat: no-repeat; /* Ngăn lặp lại ảnh */
+    margin-right: 10px;
+  }
+  .item-content {
+    flex-grow: 1;
+    overflow: hidden;
+    .sapo {
+      overflow: hidden; /* Ẩn phần vượt quá của nội dung */
+      text-overflow: ellipsis; /* Hiển thị dấu chấm 3 (...) nếu nội dung quá dài */
+      white-space: nowrap; /* Ngăn chặn quá trình xuống dòng của văn bản */
+    }
+  }
+
+  .specialty-name {
+    font-weight: bold;
+    order: -1;
+  }
+
+}
+.section-customize-handbook-row {
+  display: flex;
+}
+
+.section-customize-handbook {
+  flex: 2;
+  margin-right: 10px; /* Khoảng cách giữa các mục */
+  .last-child {
+    margin-right: 0; /* Loại bỏ khoảng cách cho mục cuối cùng */
+  }
+}
+.section-customize-handbook-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* Các mục sẽ căn cứ vào lề trái và lề phải của container */
+  gap: 10px; /* Khoảng cách giữa các mục */
+}
+
+.section-customize-handbook.specialty-child {
+  flex-basis: calc(50% - 5px); /* Căn chỉnh chiều rộng cho mỗi mục */
+}
+
+.section-body-handbook {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; /* Khoảng cách giữa các mục */
+}
+
+.section-customize-handbook.specialty-child {
+  flex-basis: calc(50% - 25px); /* Căn chỉnh chiều rộng cho mỗi mục */
+  max-width: calc(50% - 25px); /* Giới hạn kích thước tối đa của mỗi mục */
+  margin-bottom: 10px; /* Khoảng cách dưới cho mỗi mục */
+  height: 120px;
+  &:hover{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Tạo hiệu ứng bóng xung quanh khi di chuột vào */
+  }
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 30px !important;
+}
+
+.pagination li {
+  margin: 0 5px;
+}
+
+.pagination li a {
+  text-decoration: none;
+  color: #45c3d2;
+  padding: 8px 12px;
+  border: 1px solid #45c3d2;
+  border-radius: 4px;
+}
+
+.pagination li a:hover {
+  background-color: #f0f0f0;
+}
+
+.pagination .active a {
+  background-color: #45c3d2;
+  color: #fff;
+}

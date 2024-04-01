@@ -18,8 +18,8 @@ class HomePage extends Component {
       dots: false,
       infinite: false,
       speed: 500,
-      slidesToShow: 4,
-      slidesToScroll: 1,
+      // slidesToShow: 4,
+      // slidesToScroll: 1,
     };
     return (
       <div>

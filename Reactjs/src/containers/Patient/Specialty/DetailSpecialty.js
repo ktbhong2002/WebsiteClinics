@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { FormattedMessage } from "react-intl";
 import "./DetailSpecialty.scss";
+import "../Clinic/DetailClinic.scss";
 import HomeHeader from "../../HomePage/HomeHeader";
 import DoctorSchedule from "../Doctor/DoctorSchedule";
 import DoctorExtraInfor from "../Doctor/DoctorExtraInfor";
@@ -109,21 +110,37 @@ class DetailSpecialty extends Component {
   render() {
     let { arrDoctorId, dataDetailSpecialty, listProvince } = this.state;
     let { language } = this.props;
-    console.log("check state: ", this.state);
     return (
       <div className="detail-specialty-container">
         <HomeHeader />
         <div className="detail-specialty-body">
-          <div className="description-specialty">
-            {dataDetailSpecialty && !_.isEmpty(dataDetailSpecialty) && (
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: dataDetailSpecialty.descriptionHTML,
-                }}
-              ></div>
-            )}
+          <div
+            className="description-specialty"
+            style={{
+              backgroundImage: `url('${dataDetailSpecialty.image}')`,
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "cover",
+            }}
+          >
+            <div className="gradient-overlay"></div>{" "}
+            <div
+              className="content-specialty"
+              style={{
+                filter: "blur(0px)",
+              }}
+            >
+              {dataDetailSpecialty && !_.isEmpty(dataDetailSpecialty) && (
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: dataDetailSpecialty.descriptionHTML,
+                  }}
+                ></div>
+              )}
+            </div>
           </div>
-          <div className="search-sp-doctor">
+
+          <div className="search-sp-specialty">
             <select onChange={(event) => this.handleOnChangeSelect(event)}>
               {listProvince &&
                 listProvince.length > 0 &&
@@ -145,7 +162,7 @@ class DetailSpecialty extends Component {
                     <div className="profile-doctor">
                       <ProfileDoctor
                         doctorId={item}
-                        isSowDescriptionDoctor={true}
+                        isShowDescriptionDoctor={true}
                         isShowLinkDetail={true}
                         isShowPrice={false}
                         //   dataTime={dataTime}
