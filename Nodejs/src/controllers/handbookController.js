@@ -39,6 +39,19 @@ let getAllHandbook = async (req, res) => {
   }
 };
 
+let searchHandbook = async (req, res) => {
+  try {
+    let searchData = await handbookService.searchHandbook(req.query.textSearch);
+    return res.status(200).json(searchData);
+  } catch (e) {
+    console.log(e);
+    return res.status(200).json({
+      errCode: -1,
+      errMessage: "Error form service...",
+    });
+  }
+};
+
 let getDetailHandbookById = async (req, res) => {
   try {
     let infor = await handbookService.getDetailHandbookById(req.query.id);
@@ -55,6 +68,7 @@ let getDetailHandbookById = async (req, res) => {
 // Sử dụng phương thức .delete() trên router của Express
 let handleDeleteHandbook = async (req, res) => {
   try {
+    console.log(req.body);
     if (!req.body.id) {
       return res.status(400).json({
         errCode: 1,
@@ -78,4 +92,5 @@ module.exports = {
   getDetailHandbookById: getDetailHandbookById,
   crawlHandbook: crawlHandbook,
   handleDeleteHandbook: handleDeleteHandbook,
+  searchHandbook: searchHandbook,
 };

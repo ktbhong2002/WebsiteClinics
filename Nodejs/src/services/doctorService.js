@@ -2,6 +2,8 @@ import db from "../models/index";
 require("dotenv").config();
 import _ from "lodash";
 import emailService from "../services/emailService";
+import moment from "moment";
+const { Op } = require("sequelize");
 
 const MAX_NUMBER_SCHEDULE = process.env.MAX_NUMBER_SCHEDULE;
 
@@ -25,6 +27,24 @@ let getTopDoctorHome = (limitInput) => {
             model: db.Allcode,
             as: "genderData",
             attributes: ["valueEn", "valueVi"],
+          },
+          {
+            model: db.Doctor_Infor,
+            attributes: {
+              exclude: [`id`, `doctorId`],
+            },
+            include: {
+              model: db.Specialty,
+              attributes: {
+                exclude: [
+                  `id`,
+                  `doctorId`,
+                  `descriptionMarkdown`,
+                  `descriptionHTML`,
+                  `image`,
+                ],
+              },
+            },
           },
         ],
         raw: true,
@@ -257,49 +277,57 @@ let getDetailDoctorById = (inputId) => {
   });
 };
 
-let bulkCreateSchedule = (data) => {
-  return new Promise(async (resolve, reject) => {
-    try {
-      if (!data.arrSchedule || !data.doctorId || !data.formatedDate) {
-        resolve({
-          errCode: 1,
-          errMessage: "Missing required parameter!",
-        });
-      } else {
-        let schedule = data.arrSchedule;
-        if (schedule && schedule.length > 0) {
-          schedule = schedule.map((item) => {
-            item.maxNumber = MAX_NUMBER_SCHEDULE;
-            return item;
-          });
-        }
-
-        //get all existing data
-        let existing = await db.Schedule.findAll({
-          where: { doctorId: data.doctorId, date: data.formatedDate },
-          attributes: ["timeType", "date", "doctorId", "maxNumber"],
-          raw: true,
-        });
-
-        //compare difference
-        let toCreate = _.differenceWith(schedule, existing, (a, b) => {
-          return a.timeType === b.timeType && +a.date === +b.date;
-        });
-
-        //create data
-        if (toCreate && toCreate.length > 0) {
-          await db.Schedule.bulkCreate(toCreate);
-        }
-
-        resolve({
-          errCode: 0,
-          errMessage: "OK",
-        });
-      }
-    } catch (e) {
-      reject(e);
+const bulkCreateSchedule = async (data) => {
+  try {
+    // Kiểm tra các thông tin cần thiết
+    if (!data.arrSchedule || !data.doctorId || !data.formatedDate) {
+      return {
+        errCode: 1,
+        errMessage: "Missing required parameter!",
+      };
     }
-  });
+
+    // Thiết lập maxNumber cho mỗi mục trong arrSchedule
+    const schedule = data.arrSchedule.map((item) => ({
+      ...item,
+      maxNumber: MAX_NUMBER_SCHEDULE,
+      doctorId: data.doctorId, // Thêm doctorId vào mỗi mục
+    }));
+
+    // Truy vấn các lịch hẹn hiện có
+    const existing = await db.Schedule.findAll({
+      where: { doctorId: data.doctorId, date: data.formatedDate },
+      attributes: ["timeType", "date", "doctorId", "maxNumber"],
+      raw: true,
+    });
+
+    // So sánh và tạo danh sách lịch hẹn mới
+    const toCreate = schedule.filter((newSchedule) => {
+      return !existing.some((existingSchedule) => {
+        return (
+          existingSchedule.timeType === newSchedule.timeType &&
+          existingSchedule.doctorId === newSchedule.doctorId && // So sánh doctorId
+          +existingSchedule.date === +newSchedule.date
+        );
+      });
+    });
+
+    // Tạo các mục lịch hẹn mới nếu cần thiết
+    if (toCreate.length > 0) {
+      await db.Schedule.bulkCreate(toCreate);
+    }
+
+    return {
+      errCode: 0,
+      errMessage: "OK",
+    };
+  } catch (error) {
+    // Xử lý lỗi và trả về thông báo lỗi
+    return {
+      errCode: 2,
+      errMessage: "Failed to create schedule: " + error.message,
+    };
+  }
 };
 
 let getScheduleByDate = (doctorId, date) => {
@@ -339,6 +367,70 @@ let getScheduleByDate = (doctorId, date) => {
       }
     } catch (e) {
       reject(e);
+    }
+  });
+};
+
+const getAllScheduleToday = () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const today = new Date();
+      today.setHours(7, 0, 0, 0);
+      const epochTimeToday = today.getTime();
+      const dataAllScheduleToday = await db.Schedule.findAll({
+        where: {
+          date: {
+            [Op.gte]: epochTimeToday,
+          },
+        },
+        include: [
+          {
+            model: db.Allcode,
+            as: "timeTypeData",
+            attributes: ["valueEn", "valueVi"],
+          },
+          {
+            model: db.User,
+            as: "doctorData",
+            attributes: ["firstName", "lastName", "email", "phoneNumber", "id"],
+            include: [
+              {
+                model: db.Doctor_Infor,
+                attributes: {
+                  exclude: [`id`, `doctorId`],
+                },
+                include: [
+                  {
+                    model: db.Allcode,
+                    as: "priceTypeData",
+                    attributes: ["valueEn", "valueVi"],
+                  },
+                  {
+                    model: db.Allcode,
+                    as: "paymentTypeData",
+                    attributes: ["valueEn", "valueVi"],
+                  },
+                  {
+                    model: db.Allcode,
+                    as: "provinceTypeData",
+                    attributes: ["valueEn", "valueVi"],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+        raw: false,
+        nest: true,
+      });
+
+      const dataSchedule = dataAllScheduleToday || [];
+      resolve({
+        errCode: 0,
+        data: dataSchedule,
+      });
+    } catch (error) {
+      reject(error);
     }
   });
 };
@@ -506,6 +598,63 @@ let getListPatientForDoctor = (doctorId, date) => {
   });
 };
 
+let getListPatientsForDoctor = (doctorId) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      if (!doctorId) {
+        resolve({
+          errCode: 1,
+          errMessage: "Missing required parameter!",
+        });
+      } else {
+        let data = await db.Booking.findAll({
+          where: {
+            doctorId: doctorId,
+          },
+          include: [
+            {
+              model: db.User,
+              as: "patientData",
+              attributes: [
+                "email",
+                "firstName",
+                "address",
+                "gender",
+                "phoneNumber",
+              ],
+              include: [
+                {
+                  model: db.Allcode,
+                  as: "genderData",
+                  attributes: ["valueVi", "valueEn"],
+                },
+              ],
+            },
+            {
+              model: db.Allcode,
+              as: "timeTypeDataPatient",
+              attributes: ["valueVi", "valueEn"],
+            },
+            {
+              model: db.Allcode,
+              as: "statusDataPatient",
+              attributes: ["valueVi", "valueEn"],
+            },
+          ],
+          raw: false,
+          nest: true,
+        });
+        resolve({
+          errCode: 0,
+          data: data,
+        });
+      }
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
+
 let sendRemedy = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
@@ -553,5 +702,7 @@ module.exports = {
   getExtraInforDoctorById: getExtraInforDoctorById,
   getProfileDoctorById: getProfileDoctorById,
   getListPatientForDoctor: getListPatientForDoctor,
+  getListPatientsForDoctor: getListPatientsForDoctor,
   sendRemedy: sendRemedy,
+  getAllScheduleToday: getAllScheduleToday,
 };

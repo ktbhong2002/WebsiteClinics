@@ -18,6 +18,9 @@ module.exports = (sequelize, DataTypes) => {
         targetKey: `id`,
         as: `doctorData`,
       });
+      Schedule.hasOne(models.Doctor_Infor, {
+        foreignKey: `doctorId`,
+      });
     }
   }
   Schedule.init(

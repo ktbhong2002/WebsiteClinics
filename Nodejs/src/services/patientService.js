@@ -2,6 +2,8 @@ import db from "../models/index";
 require("dotenv").config();
 import emailService from "./emailService";
 import { v4 as uuidv4 } from "uuid";
+const Sequelize = require("sequelize");
+const Op = Sequelize.Op;
 
 let buildUrlEmail = (doctorId, token) => {
   let result = `${process.env.URL_REACT}/verify-booking?token=${token}&doctorId=${doctorId}`;
@@ -18,6 +20,7 @@ let postBookAppointment = (data) => {
         !data.date ||
         !data.fullName ||
         !data.address ||
+        !data.phoneNumber ||
         !data.selectedGender
       ) {
         resolve({
@@ -43,6 +46,7 @@ let postBookAppointment = (data) => {
             gender: data.selectedGender,
             address: data.address,
             firstName: data.fullName,
+            phoneNumber: data.phoneNumber,
           },
         });
         //create booking record
@@ -106,7 +110,81 @@ let postVerifyBookAppointment = (data) => {
     }
   });
 };
+
+const getSearch = (text) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      if (!text) {
+        resolve({
+          errCode: 1,
+          errMessage: "Missing required parameters",
+        });
+      } else {
+        let result = {};
+        let doctors = await db.User.findAll({
+          where: {
+            [Op.or]: [
+              { firstName: { [Op.like]: `%${text}%` } },
+              { lastName: { [Op.like]: `%${text}%` } },
+            ],
+            roleId: "R2",
+          },
+          attributes: ["id", "firstName", "lastName", "roleId"],
+          raw: true,
+        });
+        // doctors = doctors.filter(item => item.roleId === 'R2')
+        let clinics = await db.Clinic.findAll({
+          where: {
+            name: { [Op.like]: `%${text}%` },
+          },
+          attributes: ["id", "name"],
+          raw: true,
+        });
+        let specialtys = await db.Specialty.findAll({
+          where: {
+            name: { [Op.like]: `%${text}%` },
+          },
+          attributes: ["id", "name"],
+          raw: true,
+        });
+
+        result.specialty = specialtys;
+        result.doctors = doctors;
+        result.clinics = clinics;
+        resolve({
+          errCode: 0,
+          errMessage: "OK",
+          result,
+        });
+
+        // let appointment = await db.Clinic.findAll({
+        //   where: {
+        //     doctorId: data.doctorId,
+        //     token: data.token,
+        //     statusId: "S1",
+        //   },
+        //   raw: false,
+        // })
+
+        // if (appointment) {
+        //   appointment.statusId = "S2"
+        //   await appointment.save()
+
+        // } else {
+        //   resolve({
+        //     errCode: 2,
+        //     errMessage: "Appointment has been activeted or does not exist!",
+        //   })
+        // }
+      }
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
 module.exports = {
   postBookAppointment: postBookAppointment,
   postVerifyBookAppointment: postVerifyBookAppointment,
+  getSearch: getSearch,
 };

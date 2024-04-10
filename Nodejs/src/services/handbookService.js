@@ -1,7 +1,10 @@
 import request from "request";
 import fs from "fs";
 import axios from "axios";
+import { resolve } from "path";
+import { reject } from "lodash";
 
+const Fuse = require("fuse.js");
 const db = require("../models");
 const cheerio = require("cheerio");
 
@@ -95,7 +98,7 @@ let getAllHandbook = () => {
   return new Promise(async (resolve, reject) => {
     try {
       let data = await db.Handbook.findAll({
-        order: [["createdAt", "DESC"]],
+        order: [["id", "DESC"]],
       });
       if (data && data.length > 0) {
         data.map((item) => {
@@ -171,9 +174,49 @@ let getDetailHandbookById = (id) => {
   });
 };
 
+let searchHandbook = async (textSearch) => {
+  try {
+    if (!textSearch || textSearch.trim() === "") {
+      return {
+        errCode: 1,
+        errMessage: "Missing parameter",
+      };
+    }
+    let dataHandbook = await db.Handbook.findAll({
+      order: [["id", "DESC"]],
+    });
+    const fuseOptions = {
+      keys: ["title"], // Add additional fields for searching here if needed
+    };
+    const fuse = new Fuse(dataHandbook, fuseOptions);
+    // Perform search using fuse.js
+    let data = fuse.search(textSearch);
+
+    if (data && data.length > 0) {
+      // Return only the necessary data without the 'item' key
+      data = data.map((result) => {
+        return result.item;
+      });
+    }
+
+    return {
+      errCode: 0,
+      errMessage: "OK",
+      data,
+    };
+  } catch (e) {
+    console.error("Error searching handbook:", e);
+    return {
+      errCode: 500,
+      errMessage: "Internal server error",
+    };
+  }
+};
+
 module.exports = {
   getAllHandbook: getAllHandbook,
   getDetailHandbookById: getDetailHandbookById,
   crawlHandbook: crawlHandbook,
   deleteHandbook: deleteHandbook,
+  searchHandbook: searchHandbook,
 };
