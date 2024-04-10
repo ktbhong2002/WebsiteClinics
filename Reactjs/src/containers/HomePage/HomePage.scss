@@ -268,3 +268,74 @@
     width: 100%;
     height: 100%;
 }
+
+
+.connect-button {
+    position: fixed;
+    bottom: 30px;
+    left: 20px;
+    z-index: 99999;
+
+}
+
+.zalo-button {
+    background-image: url('../../assets/logo-zalo.png');
+    height: 74px;
+    width: 60px;
+    margin-bottom: 10px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 50%;
+}
+
+.facebook-button {
+    background-image: url('../../assets/logo-facebook.png');
+    height: 54px;
+    width: 57px;
+    margin-bottom: 20px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 50%;
+}
+
+.hotline-button {
+    background-image: url('../../assets/handbook/nha-khoa.png');
+    height: 60px;
+    width: 60px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.connect-button a {
+    display: block;
+}
+
+.search {
+    display: block !important;
+}
+
+.contentSearch {
+    height: 150px;
+    cursor: pointer;
+    overflow-y: scroll;
+    padding-top: 10px;
+}
+
+.contentSearch::-webkit-scrollbar {
+    display: none;
+    /* Ẩn thanh cuộn trên trình duyệt Chrome, Safari */
+}
+
+.contentSearch {
+    scrollbar-width: none;
+    /* Ẩn thanh cuộn trên trình duyệt Firefox */
+    -ms-overflow-style: none;
+    /* Ẩn thanh cuộn trên trình duyệt Internet Explorer/Edge */
+}
+
+.itemSearch {
+    cursor: pointer;
+} 

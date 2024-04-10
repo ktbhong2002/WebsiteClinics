@@ -23,6 +23,10 @@ import {
   editSpecialtyService,
   deleteSpecialtyService,
   getAllSpecialties,
+  getPostOfCategory,
+  getAllMedicalPackages,
+  deleteMedicalPackageService,
+  createNewMedicalPackageService,
 } from "../../services/userService";
 import { toast } from "react-toastify";
 
@@ -77,6 +81,58 @@ export const fetchPositionSuccess = (positionData) => ({
 
 export const fetchPositionFailed = () => ({
   type: actionTypes.FETCH_POSITION_FAILDED,
+});
+
+export const fetchClinicStart = () => {
+  return async (dispatch, getState) => {
+    try {
+      dispatch({
+        type: actionTypes.FETCH_CLINIC_START,
+      });
+      let res = await getAllClinics(`ALL`);
+      if (res && res.errCode === 0) {
+        dispatch(fetchClinicSuccess(res.data));
+      } else {
+        dispatch(fetchClinicFailed());
+      }
+    } catch (e) {
+      dispatch(fetchClinicFailed());
+      console.log(e);
+    }
+  };
+};
+export const fetchClinicSuccess = (clinicData) => ({
+  type: actionTypes.FETCH_CLINIC_SUCCESS,
+  data: clinicData,
+});
+export const fetchClinicFailed = () => ({
+  type: actionTypes.FETCH_CLINIC_FAILED,
+});
+
+export const fetchSpecialtyStart = () => {
+  return async (dispatch, getState) => {
+    try {
+      dispatch({
+        type: actionTypes.FETCH_SPECIALTY_START,
+      });
+      let res = await getAllSpecialty(`ALL`);
+      if (res && res.errCode === 0) {
+        dispatch(fetchSpecialtySuccess(res.data));
+      } else {
+        dispatch(fetchSpecialtyFailed());
+      }
+    } catch (e) {
+      dispatch(fetchSpecialtyFailed());
+      console.log(e);
+    }
+  };
+};
+export const fetchSpecialtySuccess = (specialtyData) => ({
+  type: actionTypes.FETCH_SPECIALTY_SUCCESS,
+  data: specialtyData,
+});
+export const fetchSpecialtyFailed = () => ({
+  type: actionTypes.FETCH_SPECIALTY_FAILED,
 });
 
 export const fetchRoleStart = () => {
@@ -431,7 +487,6 @@ export const fetchAllSpecialtyStart = () => {
       let res = await getAllSpecialties();
       if (res && res.errCode === 0) {
         dispatch(fetchAllSpecialtiesSuccess(res.data.reverse()));
-        console.log(res.data);
       } else {
         toast.error("Fetch all Specialty error!");
         dispatch(fetchAllSpecialtiesFailed());
@@ -663,4 +718,141 @@ export const fetchRequiredDoctorSuccess = (allRequiredData) => ({
 
 export const fetchRequiredDoctorFailed = () => ({
   type: actionTypes.FETCH_REQUIRED_DOCTOR_INFOR_FAILDED,
+});
+
+export const fetchPostOfCategorySuccess = (data) => ({
+  type: actionTypes.FETCH_PostOfCategory_SUCCESS,
+  // data: data,
+});
+
+export const fetchPostOfCategoryFailed = () => ({
+  type: actionTypes.FETCH_PostOfCategory_FAILDED,
+});
+
+export const fetchPostOfCategoryStart = () => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getPostOfCategory(`ALL`);
+      if (res && res.errCode === 0) {
+        dispatch(fetchPostOfCategorySuccess(res.data));
+      } else {
+        toast.error("Fetch all error!");
+        dispatch(fetchPostOfCategoryFailed());
+      }
+    } catch (e) {
+      toast.error("Fetch all error!");
+      dispatch(fetchPostOfCategoryFailed());
+      console.log(e);
+    }
+  };
+};
+
+export const fetchAllMedicalPackages = () => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getAllMedicalPackages();
+      if (res && res.errCode === 0) {
+        dispatch({
+          type: actionTypes.FETCH_ALL_MEDICAL_PACKAGES_SUCCESS,
+          data: res.data,
+        });
+      } else {
+        dispatch({
+          type: actionTypes.FETCH_ALL_MEDICAL_PACKAGES_FAILDED,
+        });
+      }
+    } catch (e) {
+      dispatch({
+        type: actionTypes.FETCH_ALL_MEDICAL_PACKAGES_FAILDED,
+      });
+    }
+  };
+};
+
+export const createNewMedicalPackage = (data) => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await createNewMedicalPackageService(data);
+      if (res && res.errCode === 0) {
+        toast.success("Create a new medical package successfly!");
+        dispatch(saveMedicalPackageSuccess());
+        dispatch(fetchAllMedicalPackageStart());
+      } else {
+        dispatch(saveMedicalPackageFailed());
+      }
+    } catch (e) {
+      dispatch(saveMedicalPackageFailed());
+      console.log(e);
+    }
+  };
+};
+
+export const deleteAMedicalPackage = (medicalPackageId) => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await deleteMedicalPackageService(medicalPackageId);
+      if (res && res.errCode === 0) {
+        toast.success("Delete the MedicalPackage successfly!");
+        dispatch(deleteMedicalPackageSuccess());
+        dispatch(fetchAllMedicalPackageStart());
+      } else {
+        toast.error("Delete the MedicalPackage error!");
+        dispatch(deleteMedicalPackageFailed());
+      }
+    } catch (e) {
+      toast.error("Delete the MedicalPackage error!");
+      dispatch(deleteMedicalPackageFailed());
+      console.log(e);
+    }
+  };
+};
+
+export const deleteMedicalPackageSuccess = () => ({
+  type: actionTypes.DELETE_MEDICAL_PACKAGE_SUCCESS,
+});
+
+export const deleteMedicalPackageFailed = () => ({
+  type: actionTypes.DELETE_MEDICAL_PACKAGE_FAILDED,
+});
+
+export const saveMedicalPackageSuccess = () => ({
+  // type: "CREATE_SPECIALTY_SUCCESS",
+  type: actionTypes.CREATE_MEDICAL_PACKAGE_SUCCESS,
+});
+
+export const saveMedicalPackageFailed = () => ({
+  type: "CREATE_MEDICAL_PACKAGE_FAILDED",
+});
+
+export const fetchAllMedicalPackageStart = (data) => ({
+  type: actionTypes.FETCH_ALL_MEDICAL_PACKAGE_SUCCESS,
+  data: data,
+});
+
+export const editAMedicalPackage = (data) => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await createNewMedicalPackageService(data);
+      if (res && res.errCode === 0) {
+        toast.success("Update the medicalpackage successfly!");
+        // dispatch(editMedicalPackageSuccess());
+        dispatch(fetchAllMedicalPackageStart());
+      } else {
+        toast.error("Update the medicalpackage error!");
+        dispatch(editMedicalPackageFailed());
+      }
+    } catch (e) {
+      toast.error("Update the medical package error!");
+      dispatch(editMedicalPackageFailed());
+      console.log(e);
+    }
+  };
+};
+
+export const editMedicalPackageSuccess = () => ({
+  type: actionTypes.EDIT_MEDICAL_PACKAGE_SUCCESS,
+});
+
+export const editMedicalPackageFailed = () => ({
+  type: actionTypes.EDIT_MEDICAL_PACKAGE_FAILDED,
 });

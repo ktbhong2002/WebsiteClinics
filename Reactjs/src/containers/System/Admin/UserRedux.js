@@ -7,6 +7,7 @@ import "./userRedux.scss";
 import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css";
 import TableManageUser from "./TableManageUser";
+import validInput from "../../../utils/validInput";
 
 class UserRedux extends Component {
   constructor(props) {
@@ -160,6 +161,23 @@ class UserRedux extends Component {
         isValid = false;
         alert("This input is required: " + arrCheck[i]);
         break;
+      }
+    }
+    // Kiểm tra các quy tắc riêng biệt cho từng trường
+    if (isValid) {
+      const { email, password, phoneNumber } = this.state;
+      if (!validInput.checkEmail(email)) {
+        alert("Địa chỉ email không hợp lệ");
+        isValid = false;
+      } else if (!validInput.checkUserPassword(password)) {
+        alert("Mật khẩu không hợp lệ");
+        isValid = false;
+      } else if (!validInput.checkPhoneNumber(phoneNumber)) {
+        alert("Vui lòng nhập đúng số điện thoại");
+        isValid = false;
+      } else if (phoneNumber === password) {
+        alert("Mật khẩu phải khác số điện thoại");
+        isValid = false;
       }
     }
     return isValid;

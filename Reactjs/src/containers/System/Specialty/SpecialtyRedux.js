@@ -202,7 +202,9 @@ class SpecialtyRedux extends Component {
                 }
                 onClick={() => this.handleSaveSpecialty()}
               >
-                {this.state.action === CRUD_ACTION.EDIT ? "Sửa" : "Lưu"}
+                {this.state.action === CRUD_ACTION.EDIT
+                  ? "Lưu thay đổi"
+                  : "Lưu"}
               </button>
             </div>
             <div className="col-12 mb-5"></div>

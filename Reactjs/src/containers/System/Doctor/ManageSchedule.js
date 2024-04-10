@@ -4,7 +4,7 @@ import "./ManageSchedule.scss";
 import { FormattedMessage } from "react-intl";
 import Select from "react-select";
 import * as actions from "../../../store/actions";
-import { LANGUAGES, CRUD_ACTION, dateFormat } from "../../../utils";
+import { LANGUAGES, CRUD_ACTION, dateFormat, USER_ROLE } from "../../../utils";
 import {
   getDetailInforDoctor,
   saveBulkScheludeDoctor,
@@ -24,7 +24,6 @@ class ManageSchedule extends Component {
       rangeTime: [],
     };
   }
-
   componentDidMount() {
     this.props.fetchAllDoctors();
     this.props.fetchAllScheduleTime();
@@ -46,6 +45,12 @@ class ManageSchedule extends Component {
         rangeTime: data,
       });
     }
+    // if (prevProps.language !== this.props.language) {
+    //   let dataSelect = this.buildDataInputSelect(this.props.allDoctors);
+    //   this.setState({
+    //     listDoctors: dataSelect,
+    //   });
+    // }
   }
 
   buildDataInputSelect = (inputData) => {
@@ -89,16 +94,16 @@ class ManageSchedule extends Component {
   };
 
   handleSaveSchedule = async () => {
+    const { userInfo } = this.props; // Truy xuất userInfo từ props
+
     let { rangeTime, selectedDoctor, currentDate } = this.state;
     let result = [];
     if (!currentDate) {
       toast.error("Invalid selected date!");
       return;
     }
-    if (selectedDoctor && _.isEmpty(selectedDoctor)) {
-      toast.error("Invalid selected doctor!");
-      return;
-    }
+    // let formatedDate = moment(currentDate).format(dateFormat.SEND_TO_SERVER);
+    // let formatedDate = moment(currentDate).unix();
     let formatedDate = new Date(currentDate).getTime();
 
     if (rangeTime && rangeTime.length > 0) {
@@ -116,9 +121,20 @@ class ManageSchedule extends Component {
         return;
       }
     }
+    let doctorId = "";
+    console.log(userInfo);
+    if (userInfo.roleId === "R2") {
+      doctorId = parseInt(userInfo.id, 10); // Gán giá trị của userInfo.id vào doctorId
+    } else if (userInfo.roleId === "R1") {
+      doctorId = selectedDoctor.value;
+    } else if (selectedDoctor && _.isEmpty(selectedDoctor)) {
+      toast.error("Invalid selected doctor!");
+      return;
+    }
+
     let res = await saveBulkScheludeDoctor({
       arrSchedule: result,
-      doctorId: selectedDoctor.value,
+      doctorId, // Sử dụng doctorId hoặc selectedDoctor.value tùy thuộc vào roleId
       formatedDate: formatedDate,
     });
     if (res && res.errCode === 0) {
@@ -131,9 +147,8 @@ class ManageSchedule extends Component {
 
   render() {
     let { rangeTime } = this.state;
-    let { language, userRole } = this.props;
-    console.log(userRole);
-    const yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
+    const { language, userInfo } = this.props;
+    let yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
 
     return (
       <div className="manage-schedule-container">
@@ -142,7 +157,7 @@ class ManageSchedule extends Component {
         </div>
         <div className="container">
           <div className="row">
-            {userRole === "ADMIN" && (
+            {userInfo && userInfo.roleId === "R1" ? (
               <div className="col-6">
                 <label>
                   <FormattedMessage id="manage-schedule.choose-doctor" />
@@ -153,7 +168,10 @@ class ManageSchedule extends Component {
                   options={this.state.listDoctors}
                 />
               </div>
+            ) : (
+              ""
             )}
+
             <div className="col-6 form-group">
               <label>
                 <FormattedMessage id="manage-schedule.choose-date" />
@@ -205,7 +223,7 @@ const mapStateToProps = (state) => {
     language: state.app.language,
     allDoctors: state.admin.allDoctors,
     allScheduleTime: state.admin.allScheduleTime,
-    userRole: state.user.role,
+    userInfo: state.user.userInfo,
   };
 };
 

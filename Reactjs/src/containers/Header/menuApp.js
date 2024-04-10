@@ -3,10 +3,10 @@ export const adminMenu = [
     //quản lý người dùng
     name: "menu.admin.manage-user",
     menus: [
-      {
-        name: "menu.admin.crud",
-        link: "/system/user-manage",
-      },
+      // {
+      //   name: "menu.admin.crud",
+      //   link: "/system/user-manage",
+      // },
       {
         name: "menu.admin.crud-redux",
         link: "/system/user-redux",
@@ -56,6 +56,33 @@ export const adminMenu = [
       },
     ],
   },
+  {
+    //quản lý gói khám
+    name: "menu.admin.medical-package",
+    menus: [
+      {
+        name: "menu.admin.manage-medical-package",
+        link: "/system/manage-medical-package",
+      },
+    ],
+  },
+  {
+    name: "menu.admin.statistical",
+    menus: [
+      {
+        name: "menu.admin.dashboard",
+        link: "/system/dashboard",
+      },
+      {
+        name: "Thống kê lịch khám",
+        link: "/system/statiscal-handbook",
+      },
+      {
+        name: "Thống kê cẩm nang",
+        link: "/system/statiscal-handbook",
+      },
+    ],
+  },
 ];
 
 export const doctorMenu = [
@@ -71,6 +98,10 @@ export const doctorMenu = [
         //quản lý benh nhan khám bệnh của bác sĩ
         name: "menu.doctor.manage-patient",
         link: "/doctor/manage-patient",
+      },
+      {
+        name: "Thống kê",
+        link: "/doctor/statistics",
       },
     ],
   },

@@ -12,6 +12,7 @@ import { LANGUAGES } from "../../../../utils";
 import Select from "react-select";
 import { postPatientBookAppointment } from "../../../../services/userService";
 import { toast } from "react-toastify";
+import validInput from "../../../../utils/validInput";
 
 class BookingModal extends Component {
   constructor(props) {
@@ -126,6 +127,34 @@ class BookingModal extends Component {
     let date = new Date(this.state.birthday).getTime();
     let timeString = this.buildTimeBooking(this.props.dataTime);
     let doctorName = this.buildDoctorName(this.props.dataTime);
+
+    let isValid = true;
+    let arrCheck = [
+      "email",
+      "fullName",
+      "phoneNumber",
+      "address",
+      "reason",
+      "birthday",
+    ];
+    for (let i = 0; i < arrCheck.length; i++) {
+      if (!this.state[arrCheck[i]]) {
+        isValid = false;
+        alert("This input is required: " + arrCheck[i]);
+        return; // Dừng thực hiện hàm ngay lập tức
+      }
+    }
+    if (isValid) {
+      let { email, phoneNumber, address, reason } = this.state;
+      if (!validInput.checkEmail(email)) {
+        alert("Địa chỉ email không hợp lệ");
+        return; // Dừng thực hiện hàm ngay lập tức
+      } else if (!validInput.checkPhoneNumber(phoneNumber)) {
+        alert("Vui lòng nhập đúng số điện thoại");
+        return; // Dừng thực hiện hàm ngay lập tức
+      }
+    }
+
     let res = await postPatientBookAppointment({
       fullName: this.state.fullName,
       phoneNumber: this.state.phoneNumber,
@@ -144,15 +173,15 @@ class BookingModal extends Component {
     if (res && res.errCode === 0) {
       toast.success("Booking new appointment successflly");
       this.props.closeBookingModal();
-      // this.setState({
-      //   fullName: "",
-      //   address: "",
-      //   email: "",
-      //   phoneNumber: "",
-      //   reason: "",
-      //   birthday: "",
-      //   genders: "",
-      // });
+      this.setState({
+        fullName: "",
+        address: "",
+        email: "",
+        phoneNumber: "",
+        reason: "",
+        birthday: "",
+        genders: "",
+      });
     } else {
       toast.error("Booking new appointment error");
     }

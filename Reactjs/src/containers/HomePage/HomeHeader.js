@@ -6,8 +6,13 @@ import { LANGUAGES } from "../../utils";
 import { changeLanguageApp } from "../../store/actions";
 import { withRouter } from "react-router";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { search } from "../../services/userService";
 
 class HomeHeader extends Component {
+  state = {
+    textSearch: "",
+    resultSearch: [],
+  };
   changeLanguage = (language) => {
     this.props.changeLanguageAppRedux(language);
   };
@@ -16,6 +21,77 @@ class HomeHeader extends Component {
     if (this.props.history) {
       this.props.history.push(`/home`);
     }
+  };
+
+  handleStartSearch = async () => {
+    let res = await search(this.state.textSearch);
+    if (res && res.errCode === 0) {
+      let doctors = res.result.doctors;
+      let clinics = res.result.clinics;
+      let specialties = res.result.specialty;
+      let result = [];
+      result = doctors.map((item) => ({
+        id: item.id,
+        type: 1,
+        valueDisplay:
+          this.props.language === LANGUAGES.VI
+            ? `Bác sĩ, ${item.lastName} ${item.firstName}`
+            : `Doctor, ${item.firstName} ${item.lastName}`,
+      }));
+      result = [
+        ...result,
+        ...clinics.map((item) => ({
+          id: item.id,
+          type: 0,
+          valueDisplay:
+            this.props.language === LANGUAGES.VI
+              ? `Cơ sở, ${item.name}`
+              : `Clinic, ${item.name}`,
+        })),
+      ];
+      result = [
+        ...result,
+        ...specialties.map((item) => ({
+          id: item.id,
+          type: 2,
+          valueDisplay:
+            this.props.language === LANGUAGES.VI
+              ? `Chuyên khoa, ${item.name}`
+              : `Specialty, ${item.name}`,
+        })),
+      ];
+
+      this.setState({ resultSearch: result });
+    }
+  };
+
+  handleOnChangeSearch = (e) => {
+    this.setState({ textSearch: e.target.value }, () => {
+      if (this.state.textSearch.trim() !== "") {
+        this.handleStartSearch();
+      } else {
+        this.setState({ resultSearch: [] });
+      }
+    });
+  };
+
+  handleClickItemSearch = (item) => {
+    const { type, id } = item;
+    let path = "";
+    switch (type) {
+      case 1:
+        path = `/detail-doctor/${id}`;
+        break;
+      case 0:
+        path = `/detail-clinic/${id}`;
+        break;
+      case 2:
+        path = `/detail-specialty/${id}`;
+        break;
+      default:
+        break;
+    }
+    this.props.history.push(path);
   };
 
   render() {
@@ -68,16 +144,18 @@ class HomeHeader extends Component {
                   </div>
                 </div>
               </Link>
-              <div className="child-content">
-                <div>
-                  <b>
-                    <FormattedMessage id="home_header.fee" />
-                  </b>
+              <Link to="/medical-package">
+                <div className="child-content">
+                  <div>
+                    <b>
+                      <FormattedMessage id="home_header.fee" />
+                    </b>
+                  </div>
+                  <div className="subs-title">
+                    <FormattedMessage id="home_header.check-health" />
+                  </div>
                 </div>
-                <div className="subs-title">
-                  <FormattedMessage id="home_header.check-health" />
-                </div>
-              </div>
+              </Link>
             </div>
             <div className="right-content">
               <div className="support">
@@ -120,7 +198,25 @@ class HomeHeader extends Component {
               </div>
               <div className="search">
                 <i className="fas fa-search"></i>
-                <input type="text" placeholder="Tìm chuyên khoa"></input>
+                <input
+                  type="text"
+                  placeholder="Tìm kiếm thông tin"
+                  value={this.state.textSearch}
+                  onChange={this.handleOnChangeSearch}
+                />
+                {this.state.resultSearch.length > 0 && (
+                  <div className="contentSearch">
+                    {this.state.resultSearch.map((item, index) => (
+                      <p
+                        className="itemSearch"
+                        key={index}
+                        onClick={() => this.handleClickItemSearch(item)}
+                      >
+                        {item.valueDisplay}
+                      </p>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
             <div className="content-down">

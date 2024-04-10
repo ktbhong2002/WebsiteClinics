@@ -8,7 +8,9 @@ import ManageDoctor from "../containers/System/Admin/ManageDoctor";
 import ManageSpecialty from "../containers/System/Specialty/SpecialtyRedux";
 import ManageHandbook from "../containers/System/Handbook/ManageHandbook";
 import ClinicRedux from "../containers/System/Clinic/ClinicRedux";
-
+import Dashboard from "../containers/System/Admin/Dashboard";
+import MedicalPackageRedux from "../containers/System/MedicalPackage/MedicalPackageRedux";
+import MedicalPackage from "../containers/System/MedicalPackage/MedicalPackage";
 class System extends Component {
   render() {
     // {this.props.isLoggedIn && <Header />}
@@ -31,6 +33,11 @@ class System extends Component {
                 path="/system/manage-handbook"
                 component={ManageHandbook}
               />
+              <Route
+                path="/system/manage-medical-package"
+                component={MedicalPackage}
+              />
+              <Route path="/system/dashboard" component={Dashboard} />
               <Route
                 component={() => {
                   return <Redirect to={systemMenuPath} />;

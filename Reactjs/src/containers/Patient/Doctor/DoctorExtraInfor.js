@@ -47,7 +47,7 @@ class DoctorExtraInfor extends Component {
     let { isShowDetailInfor, extraInfor } = this.state;
     let { language } = this.props;
     return (
-      <div className="doctor-extra-infor-container">
+      <div className="doctor-extra-infor-container col-md-10">
         <div className="content-up">
           <div className="text-address">
             <FormattedMessage id="patient.extra-infor-doctor.text-address" />

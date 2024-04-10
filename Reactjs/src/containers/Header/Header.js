@@ -65,7 +65,7 @@ class Header extends Component {
             }
             onClick={() => this.handleChangeLanguage(LANGUAGES.EN)}
           >
-            🇻🇬
+            🇬🇧
           </span>
           {/* Nút logout */}
           <div

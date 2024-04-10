@@ -34,7 +34,11 @@
             "manage-specialty": "Quản lý chuyên khoa",
             "specialty": "Chuyên khoa",
             "manage-handbook": "Quản lý cẩm nang",
-            "handbook": "Cẩm nang"
+            "handbook": "Cẩm nang",
+            "medical-package":"Gói khám",
+            "manage-medical-package":"Quản lý gói khám",
+            "statistical":"Thống kê",
+            "dashboard":"Quản lý chung"
         },
         "doctor":{
             "manage-schedule":"Quản lý kế hoạch khám bệnh",
@@ -64,7 +68,7 @@
         "image":"Ảnh bìa",
         "sapo" : "Tóm tắt",
         "save":"Lưu",
-        "edit":"Sửa",
+        "edit":"Lưu thay đổi",
         "action":"Hành động"
     },
 
@@ -132,5 +136,49 @@
             "add":"Lưu"
         }
 
+    },
+    "admin-dashboard": {
+        "dashboard":{
+          "greeting":"Xin chào, bạn đã quay lại",
+          "weekly-revenue":"Doanh thu tuần này",
+          "new-users":"Người dùng mới",
+          "total-health-appointment-done":"Tổng ca khám bệnh thành công",
+          "total-doctors":"Tổng số bác sĩ",
+          "top-3-doctors-with-the-highest-revenue-of-the-year":"3 bác sĩ doanh thu cao nhất năm",
+          "top-4-vip-patients":"4 bệnh nhân VIP",
+          "monthly-revenue-specialty":"Xếp hạng doanh thu theo tháng của các chuyên khoa khám bệnh"
+        }
+    },
+    "medical-history": {
+        "title": "Lịch sử khám bệnh",
+        "filters":"Bộ lọc",
+        "from-date": "Từ ngày",
+        "to-date": "Đến ngày",
+        "apply": "Ứng dụng",
+        "reset": "Cài lại",
+        "date-examination": "Ngày khám",
+        "reason": "Lý do",
+        "doctor": "Bác sĩ khám bệnh",
+        "prescription": "Đơn thuốc",
+        "doctor-advice": "Lời dặn của bác sĩ",
+        "receipt": "Hóa đơn"
+      },
+      "homefooter": {
+        "companyName": "Công ty Cổ phần Công nghệ BookingCare",
+        "Contact-for-cooperation": "Liên hệ hợp tác",
+        "Enterprise-digital-transformation-package": "Gói chuyển đổi số doanh nghiệp",
+        "Recruit": "Tuyển dụng",
+        "Frequently-asked-questions": "Câu hỏi thường gặp",
+        "terms-of-use": "Điều khoản sử dụng",
+        "Privacy-Policy": "Chính sách Bảo mật",
+        "Complaint-handling-support-process": "Quy trình hỗ trợ giải quyết khiếu nại",
+        "Operational-Regulations": "Quy chế hoạt động",
+        "Headquarters": "Trụ sở tại Hà Nội",
+        "Office": "Văn phòng tại TP Hồ Chí Minh",
+        "support": "Hỗ trợ khách hàng",
+        "download": "Tải ứng dụng BookingCare cho điện thoại hoặc máy tính bảng:",
+        "other": "Khác"
     }
+
+
 }

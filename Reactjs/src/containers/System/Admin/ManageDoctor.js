@@ -274,7 +274,6 @@ class ManageDoctor extends Component {
         selectedClinic: "",
       });
     }
-    console.log(`Option selected:`, res);
   };
 
   handleChangeSelectDoctorInfor = async (selectedOption, name) => {
@@ -296,6 +295,7 @@ class ManageDoctor extends Component {
 
   render() {
     let { hasOldData, listSpecialty } = this.state;
+    console.log(this.state);
     return (
       <div className="manage-doctor-container">
         <div className="manage-doctor-title">

@@ -103,3 +103,19 @@
   background-color: #45c3d2;
   color: #fff;
 }
+
+.search {
+  border-radius: 20px;
+  // display: flex;
+  // align-items: right;
+  margin-bottom: 30px;
+  display: flex;
+}
+
+.search__input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  margin-right: 20px;
+}

@@ -100,7 +100,7 @@ border-bottom: 1px solid #ccc;
 }
 .home-header-banner{
     background: url("../../assets/header-background.jpg");
-    height: 485px;
+    height: 585px;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -116,8 +116,9 @@ border-bottom: 1px solid #ccc;
             text-align: center;
             font-size: 30px;
             text-shadow: 1px 1px 1px #333;
-            margin-bottom: 15px;
             color: white;
+            margin-top: 30px;
+            margin-bottom: 5px;
         }
         
         .title2{
@@ -125,25 +126,26 @@ border-bottom: 1px solid #ccc;
             font-size: 30px;
             text-shadow: 1px 1px 1px #333;
             color: white;
-            margin-bottom: 15px;
+            margin-bottom: 16px;
         }
         
-        .search{
+        .search {
             width: fit-content;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin:0 auto;
+            margin: 0 auto;
             padding: 10px;
             border-radius: 25px;
             background: #f7d800;
-    
-            i{
+
+            i {
                 margin: 0 5px;
             }
-            input{
-                height:30px ;
-                width:360px ;
+
+            input {
+                width: 360px;
+                height: 35px;
                 background: transparent;
                 border: none;
                 outline: none;

@@ -136,6 +136,12 @@ const getAllPatientForDoctor = (data) => {
   );
 };
 
+const getAllPatientsForDoctor = (data) => {
+  return axios.get(
+    `/api/get-list-patients-for-doctor?doctorId=${data.doctorId}`
+  );
+};
+
 const postSendRemedy = (data) => {
   return axios.post(`/api/send-remedy`, data);
 };
@@ -149,6 +155,9 @@ const getAllHandbooks = (data) => {
 const getAllHandbook = (data) => {
   return axios.get(`/api/get-all-handbook`);
 };
+const searchHandbookAction = (textSearch) => {
+  return axios.get(`/api/search-handbook`, { params: textSearch });
+};
 
 const deleteHandbookService = (handbookId) => {
   return axios.delete("/api/delete-handbook-by-id", {
@@ -161,6 +170,132 @@ const editHandbookService = (inputData) => {
 
 const getAllDetailHandbookById = (data) => {
   return axios.get(`/api/get-detail-handbook-by-id?id=${data.id}`);
+};
+
+const getPostOfCategory = () => {
+  return axios.get(`/api/statiscal/post-of-category`);
+};
+
+const getAllMedicalPackage = () => {
+  return axios.get(`/api/get-all-medical-package`);
+};
+
+const getDetailMedicalPackageById = (inputId) => {
+  return axios.get(`/api/get-detail-medical-package?id=${inputId}`);
+};
+
+//admin
+const getWeeklyRevenue = () => {
+  return axios.get(`/api/get-weekly-revenue`);
+};
+
+const getTotalNewUserDay = () => {
+  return axios.get(`/api/get-total-new-user-day`);
+};
+
+const getTotalHealthAppointmentDone = () => {
+  return axios.get(`/api/get-total-health-appointment-done`);
+};
+
+const getTotalDoctors = () => {
+  return axios.get(`/api/get-total-doctor`);
+};
+
+const getTopThreeDoctorOfTheYear = () => {
+  return axios.get(`/api/get-top-three-doctors-of-the-year`);
+};
+
+const getTopFourVipPatient = () => {
+  return axios.get(`/api/get-top-four-vip-patient`);
+};
+
+const getMonthlyRevenueSpecialty = () => {
+  return axios.get(`/api/get-monthly-revenue-specialty`);
+};
+
+const getHandleLoginGoogle = (data) => {
+  return axios.post(`/api/login-google`, data);
+};
+
+const filterHistoriesPatient = (data) => {
+  return axios.post(`/api/filter-history`, data);
+};
+
+const filterUsers = (data) => {
+  return axios.post(`/api/filter-users`, data);
+};
+
+const editPassword = (data) => {
+  return axios.post(`/api/edit-password-user`, data);
+};
+
+const filterRestoreUsers = (data) => {
+  return axios.post(`/api/filter-restore-users`, data);
+};
+
+const handleRestoreUser = (data) => {
+  return axios.post(`/api/handle-restore-user`, data);
+};
+
+const deleteRestoreUser = (data) => {
+  return axios.post(`/api/delete-restore-user`, data);
+};
+const getBookingById = (bookingId) => {
+  return axios.get(`/api/get-booking-by-id?bookingId=${bookingId}`);
+};
+
+const saveDetailDoctor = (data) => {
+  return axios.post("/api/save-infor-doctors", data);
+};
+const saveBulkScheduleDoctor = (data) => {
+  return axios.post("/api/bulk-create-schedule", data);
+};
+
+const getExtraInforDoctorById = (doctorId) => {
+  return axios.get(`/api/get-extra-infor-doctor-by-id?doctorId=${doctorId}`);
+};
+
+const getAllSpecialtyById = (data) => {
+  return axios.get(
+    `/api/get-detail-specialty-by-id?id=${data.id}&location=${data.location}`
+  );
+};
+const postUserForgotPassword = (data) => {
+  return axios.post("/api/user-forgot-password", data);
+};
+
+const postVerifyRetrievePassword = (data) => {
+  return axios.post("/api/verify-retrieve-password", data);
+};
+
+const cancelBooking = (data) => {
+  return axios.post("/api/cancel-booking", data);
+};
+
+const postCreateRemedy = (data) => {
+  return axios.post("/api/create-remedy", data);
+};
+
+const getAllMedicalPackages = (data) => {
+  return axios.get("/api/get-all-medical-package", data);
+};
+
+const deleteMedicalPackageService = (medicalPackageId) => {
+  console.log(medicalPackageId);
+  return axios.delete("/api/delete-medical-package", {
+    data: { id: medicalPackageId },
+  });
+};
+
+const createNewMedicalPackageService = (data) => {
+  return axios.post("/api/save-infor-medical-packages", data);
+};
+
+const getDetailInforMedicalPackage = (inputId) => {
+  return axios.get(`/api/get-detail-medical-package?id=${inputId}`);
+};
+const search = (text) => {
+  return axios.get(`/api/search?text=${text}`);
 };
 
 export {
@@ -189,10 +324,12 @@ export {
   getAllClinics,
   getAllDetailClinicById,
   getAllPatientForDoctor,
+  getAllPatientsForDoctor,
   postSendRemedy,
   getAllHandbooks,
   getAllHandbook,
   crawlNewHandbook,
+  searchHandbookAction,
   deleteHandbookService,
   editHandbookService,
   getAllDetailHandbookById,
@@ -202,4 +339,35 @@ export {
   getAllSpecialties,
   editClinicService,
   deleteClinicService,
+  getPostOfCategory,
+  getAllMedicalPackage,
+  getDetailMedicalPackageById,
+  getWeeklyRevenue,
+  getTotalNewUserDay,
+  getTotalHealthAppointmentDone,
+  getTopThreeDoctorOfTheYear,
+  getHandleLoginGoogle,
+  getBookingById,
+  filterHistoriesPatient,
+  filterUsers,
+  editPassword,
+  filterRestoreUsers,
+  handleRestoreUser,
+  deleteRestoreUser,
+  getMonthlyRevenueSpecialty,
+  getTopFourVipPatient,
+  getTotalDoctors,
+  saveDetailDoctor,
+  saveBulkScheduleDoctor,
+  getExtraInforDoctorById,
+  getAllSpecialtyById,
+  postUserForgotPassword,
+  postVerifyRetrievePassword,
+  cancelBooking,
+  postCreateRemedy,
+  getAllMedicalPackages,
+  deleteMedicalPackageService,
+  getDetailInforMedicalPackage,
+  createNewMedicalPackageService,
+  search,
 };

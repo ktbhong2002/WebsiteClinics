@@ -52,7 +52,8 @@ class HandbookManage extends Component {
           arrHandbooks: response.data,
         });
       }
-      toast.success("Thu thập bài viết thành công, hãy tải lại trang!");
+      window.location.reload();
+      toast.success("Thu thập bài viết thành công!");
     } catch (e) {
       toast.error("Lỗi server, liên hệ admin ");
     }

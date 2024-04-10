@@ -90,6 +90,9 @@ class OutStandingDoctor extends Component {
                             </strong>
                           </div>
                           {/* <div>Thần kinh</div> */}
+                          <div className="">
+                            {item.Doctor_Infor.Specialty.name}
+                          </div>
                           <div className="">{item.name}</div>
                         </div>
                       </div>

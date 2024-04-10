@@ -34,7 +34,11 @@
             "manage-specialty": "Manage specialties",
             "specialty": "Specialties",
             "manage-handbook": "Manage handbooks",
-            "handbook": "Handbooks"
+            "handbook": "Handbooks",
+            "medical-package":"Medical package",
+            "manage-medical-package":"Manage medical package",
+            "statistical":"Statistical",
+            "dashboard":"Manage general"
         },
         "doctor":{
             "manage-schedule":"Manage doctor's schedule",
@@ -110,6 +114,32 @@
             "price-booking":"Free booking"
         }
     },
+    "medical-history": {
+        "title": "Medical examination history",
+        "filters":"Filters",
+        "from-date": "From date",
+        "to-date": "To date",
+        "apply": "Apply",
+        "reset": "Reset",
+        "date-examination": "Medical examination day",
+        "reason": "Reason",
+        "doctor": "Doctor",
+        "prescription": "Prescription",
+        "doctor-advice": "Doctor's advice",
+        "receipt": "Receipt"
+      },
+      "admin-dashboard": {
+          "dashboard":{
+            "greeting":"Hi, Welcome back",
+            "weekly-revenue":"Weekly Revenue",
+            "new-users":"New Users",
+            "total-health-appointment-done":"Total Health Appointment Done",
+            "total-doctors":"Total Doctors",
+            "top-3-doctors-with-the-highest-revenue-of-the-year":"Top 3 doctors with the highest revenue of the year",
+            "top-4-vip-patients":"Top 4 vip patients",
+            "monthly-revenue-specialty":"Monthly Revenue Specialty"
+          }
+      },
     "admin":{
         "manage-doctor":{
             "title":"Doctor information",
@@ -132,6 +162,22 @@
             "address-clinic":"Clinic address",
             "picture-clinic":"Clinic photo",
             "add":"Save"
+        },
+        "homefooter": {
+            "companyName": "BookingCare Technology Joint Stock Company",
+            "Contact-for-cooperation": "Contact for cooperation",
+            "Enterprise-digital-transformation-package": "Enterprise digital transformation package",
+            "Recruit": "Recruit",
+            "Frequently-asked-questions": "Frequently asked questions",
+            "terms-of-use": "Terms of use",
+            "Privacy-Policy": "Privacy Policy",
+            "Complaint-handling-support-process": "Complaint handling support process",
+            "Operational-Regulations": "Operational Regulations",
+            "Headquarters": "Headquarters in Hanoi",
+            "Office": "Office in Ho Chi Minh City",
+            "support": "Customer support",
+            "download": "Get the BookingCare app for your phone or tablet:",
+            "other": "Other"
         }
 
     }

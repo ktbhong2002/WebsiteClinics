@@ -1,0 +1,144 @@
+.section-customize-medicalPackage {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    cursor: pointer;
+    border-color: #45c3d2;
+    // border-radius: 20px;
+    border: 1px solid #45c3d2;
+    display: flex;
+    flex-direction: column;
+  
+  
+    &:hover {
+      color: #45c3d2;
+      transform: translateY(-10px);
+      border-color: #45c3d2; /* Thay đổi màu viền khi hover */
+    }
+  
+    .medicalPackage-image {
+        width: 100%;
+        height: 50%;
+      }
+      
+      .medicalPackage-image img {
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
+      }
+
+      .medicalPackage-info {
+        top: 5px;
+        width: 100%;
+        height:50%;
+        padding: 10px;
+        box-sizing: border-box;
+        border-bottom: 1px solid #ccc;
+      }
+      .medicalPackage-name {
+        font-size: 15.5px;
+        font-weight: bold;
+      }
+      .medicalPackage-clinic {
+        margin-top: 5px;
+        font-size: 15px;
+        overflow: hidden; /* Ẩn phần vượt quá của nội dung */
+        text-overflow: ellipsis; /* Hiển thị dấu chấm 3 (...) nếu nội dung quá dài */
+        white-space: nowrap; /* Ngăn chặn quá trình xuống dòng của văn bản */
+      }
+      .medicalPackage-content {
+        //  background-color: #45c3d2;
+        // display: flex; /* Biến container thành một flex container */
+        // justify-content: space-between; /* Canh giữa phần tử con và phần tử cha */
+      }
+      .box-price {
+        // display: flex;
+        align-items: center;
+      }
+      .medicalPackage-price {
+        
+        // margin-top: 5px;
+        font-size: 16px;
+        font-weight: bold;
+        text-align: right;
+    }
+
+
+
+    .item-content {
+        position: absolute; /* Định vị tuyệt đối để chiều rộng và chiều cao là 100% của phần tử cha */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background-color: rgba(0, 0, 0, 0.5); /* Một lớp nền mờ đen */
+        color: black; /* Màu văn bản trắng */
+        opacity: 0; /* Ẩn phần tử nội dung ban đầu */
+        transition: opacity 0.3s ease; /* Hiệu ứng hiển thị mượt mà */
+      .sapo {
+        overflow: hidden; /* Ẩn phần vượt quá của nội dung */
+        text-overflow: ellipsis; /* Hiển thị dấu chấm 3 (...) nếu nội dung quá dài */
+        white-space: nowrap; /* Ngăn chặn quá trình xuống dòng của văn bản */
+      }
+    }
+  
+    .medicalPackage-name {
+      font-weight: bold;
+      
+    }
+  
+  }
+
+  .section-customize-medicalPackage-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Các mục sẽ căn cứ vào lề trái và lề phải của container */
+    gap: 10px; /* Khoảng cách giữa các mục */
+  }
+  
+  
+  .section-body-medicalPackage {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Khoảng cách giữa các mục */
+  }
+  
+  .section-customize-medicalPackage.medicalPackage-child {
+    display: flex; /* Sử dụng flexbox */
+    align-items: flex-start; /* Căn phần tử theo đầu trang */
+    border-width: 1px;
+    border-color: rgb(238, 238, 238);
+    margin: 10px 5px 20px;
+    box-shadow: rgba(32, 33, 36, 0.28) 0px 1px 6px;
+    flex-basis: calc(24% - 15px); /* Căn chỉnh chiều rộng cho mỗi mục */
+    max-width: calc(24% - 15px); /* Giới hạn kích thước tối đa của mỗi mục */
+    margin-bottom: 10px; /* Khoảng cách dưới cho mỗi mục */
+    position: relative; /* Cho phép định vị tương đối cho hình ảnh */
+    overflow: hidden; /* Ẩn phần vượt quá của hình ảnh */
+    height: 320px;
+    &:hover{
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Tạo hiệu ứng bóng xung quanh khi di chuột vào */
+      opacity: 1; /* Hiển thị nội dung khi di chuột vào */
+    }
+  }
+
+  
+  .search {
+    border-radius: 20px;
+    // display: flex;
+    // align-items: right;
+    margin-bottom: 30px;
+    display: flex;
+  }
+  
+  .search__input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    margin-right: 20px;
+  }

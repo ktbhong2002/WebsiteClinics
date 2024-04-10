@@ -217,7 +217,9 @@ class ClinicRedux extends Component {
                 }
                 onClick={() => this.handleSaveClinic()}
               >
-                {this.state.action === CRUD_ACTION.EDIT ? "Sửa" : "Lưu"}
+                {this.state.action === CRUD_ACTION.EDIT
+                  ? "Lưu thay đổi"
+                  : "Lưu"}
               </button>
             </div>
             <div className="col-12 mb-5"></div>
@@ -242,6 +244,7 @@ const mapStateToProps = (state) => {
   return {
     language: state.app.language,
     listClinics: state.admin.clinics,
+    listSpecialties: state.admin.specialties,
   };
 };
 
