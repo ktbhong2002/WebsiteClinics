@@ -79,6 +79,24 @@ let getAllDoctors = () => {
             as: "genderData",
             attributes: ["valueEn", "valueVi"],
           },
+          {
+            model: db.Doctor_Infor,
+            attributes: {
+              exclude: [`id`, `doctorId`],
+            },
+            include: {
+              model: db.Specialty,
+              attributes: {
+                exclude: [
+                  `id`,
+                  `doctorId`,
+                  `descriptionMarkdown`,
+                  `descriptionHTML`,
+                  `image`,
+                ],
+              },
+            },
+          },
           // {
           //   model: db.Specialty,
           //   // as: "specialtyData",
@@ -435,6 +453,76 @@ const getAllScheduleToday = () => {
   });
 };
 
+const getDoctorSchedule = (doctorId) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const today = new Date();
+      today.setHours(7, 0, 0, 0);
+      const epochTimeToday = today.getTime();
+      const dataDoctorScheduleToday = await db.Schedule.findAll({
+        where: {
+          doctorId: doctorId,
+          date: {
+            [Op.gte]: epochTimeToday,
+          },
+        },
+        include: [
+          {
+            model: db.Allcode,
+            as: "timeTypeData",
+            attributes: ["valueEn", "valueVi"],
+          },
+        ],
+        raw: false,
+        nest: true,
+      });
+
+      // Sắp xếp dữ liệu theo ngày giảm dần
+      dataDoctorScheduleToday.sort((a, b) => a.date - b.date);
+
+      const dataSchedule = dataDoctorScheduleToday || [];
+      resolve({
+        errCode: 0,
+        data: dataSchedule,
+      });
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
+const doctorCancelSchedule = (doctorId, scheduleId) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const deletedSchedule = await db.Schedule.destroy({
+        where: {
+          doctorId: doctorId,
+          id: scheduleId,
+        },
+        raw: false,
+        nest: true,
+      });
+
+      if (deletedSchedule === 0) {
+        // Không tìm thấy lịch cần hủy
+        resolve({
+          errCode: 404,
+          message: "Không tìm thấy lịch đăng kí",
+        });
+      } else {
+        // Lịch đã được hủy thành công
+        resolve({
+          errCode: 0,
+          message: "Hủy lịch đăng kí thành công",
+        });
+      }
+    } catch (error) {
+      // Xử lý lỗi
+      reject(error);
+    }
+  });
+};
+
 let getExtraInforDoctorById = (idInput) => {
   return new Promise(async (resolve, reject) => {
     try {
@@ -569,7 +657,7 @@ let getListPatientForDoctor = (doctorId, date) => {
             {
               model: db.User,
               as: "patientData",
-              attributes: ["email", "firstName", "address", "gender"],
+              attributes: ["email", "firstName", "address", "gender", "reason"],
               include: [
                 {
                   model: db.Allcode,
@@ -621,6 +709,7 @@ let getListPatientsForDoctor = (doctorId) => {
                 "address",
                 "gender",
                 "phoneNumber",
+                "reason",
               ],
               include: [
                 {
@@ -644,6 +733,7 @@ let getListPatientsForDoctor = (doctorId) => {
           raw: false,
           nest: true,
         });
+        data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
         resolve({
           errCode: 0,
           data: data,
@@ -705,4 +795,6 @@ module.exports = {
   getListPatientsForDoctor: getListPatientsForDoctor,
   sendRemedy: sendRemedy,
   getAllScheduleToday: getAllScheduleToday,
+  getDoctorSchedule: getDoctorSchedule,
+  doctorCancelSchedule: doctorCancelSchedule,
 };

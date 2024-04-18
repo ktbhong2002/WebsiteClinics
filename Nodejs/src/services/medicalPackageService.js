@@ -22,6 +22,24 @@ let getAllMedicalPackage = () => {
         raw: true,
         nest: true,
       });
+
+      if (medicalPackage && medicalPackage.length > 0) {
+        medicalPackage.map((item) => {
+          item.image = new Buffer.from(item.image, "base64").toString("binary");
+          return item;
+        });
+      }
+
+      // if (medicalPackage && medicalPackage.length > 0) {
+      //   medicalPackage.forEach((medicalpackage) => {
+      //     if (medicalpackage.image) {
+      //       medicalpackage.image = new Buffer.from(
+      //         medicalpackage.image,
+      //         "base64"
+      //       ).toString("binary");
+      //     }
+      //   });
+      // }
       resolve({
         errCode: 0,
         data: medicalPackage,
@@ -57,6 +75,13 @@ let getDetailMedicalPackageById = (inputId) => {
           nest: true,
         });
         if (!data) data = {};
+        else {
+          if (data.image) {
+            data.image = new Buffer.from(data.image, "base64").toString(
+              "binary"
+            );
+          }
+        }
         resolve({
           errCode: 0,
           data: data,
@@ -88,7 +113,6 @@ let checkRequiredFields = (inputData) => {
 let saveDetailInforMedicalPackage = (inputData) => {
   return new Promise(async (resolve, reject) => {
     try {
-      console.log(inputData);
       let checkObj = checkRequiredFields(inputData);
       if (checkObj.isVailid === false) {
         resolve({
@@ -116,6 +140,7 @@ let saveDetailInforMedicalPackage = (inputData) => {
             raw: false,
           });
           if (medicalPackageMarkdown) {
+            medicalPackageMarkdown.name = inputData.name;
             medicalPackageMarkdown.descriptionHTML = inputData.descriptionHTML;
             medicalPackageMarkdown.descriptionMarkdown =
               inputData.descriptionMarkdown;

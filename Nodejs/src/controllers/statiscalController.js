@@ -74,6 +74,19 @@ let handleGetCountClinic = async (req, res) => {
   }
 };
 
+let handleGetCountMedicalPackage = async (req, res) => {
+  try {
+    let data = await statiscalService.getCountMedicalPackage();
+    return res.status(200).json(data);
+  } catch (error) {
+    console.error("Error getting count of medical package", error);
+    return res.status(500).json({
+      errCode: 500,
+      errMessage: "Internal server error",
+    });
+  }
+};
+
 let handlePostOfDay = async (req, res) => {
   try {
     let data = await statiscalService.postOfDay();
@@ -165,5 +178,6 @@ module.exports = {
   handleNewsByMonth: handleNewsByMonth,
   handleNewsByCategory: handleNewsByCategory,
   handleDoctorAppointmentSchedule: handleDoctorAppointmentSchedule,
+  handleGetCountMedicalPackage: handleGetCountMedicalPackage,
   //   handleGetCountHandbookofMonth: handleGetCountHandbookofMonth,
 };

@@ -37,17 +37,20 @@ let handleUserLogin = (email, password) => {
           raw: true,
         });
         if (user) {
-          let check = await bcrypt.compareSync(password, user.password);
-
-          if (check) {
-            userData.errCode = 0;
-            userData.errMessage = "OK";
-
-            delete user.password;
-            userData.user = user;
+          if (user.roleId === "R3") {
+            userData.errCode = 4;
+            userData.errMessage = "Bạn không có quyền đăng nhập";
           } else {
-            userData.errCode = 3;
-            userData.errMessage = "Wrong password";
+            let check = await bcrypt.compareSync(password, user.password);
+            if (check) {
+              userData.errCode = 0;
+              userData.errMessage = "OK";
+              delete user.password;
+              userData.user = user;
+            } else {
+              userData.errCode = 3;
+              userData.errMessage = "Wrong password";
+            }
           }
         } else {
           userData.errCode = 2;
@@ -169,7 +172,7 @@ let deleteUser = (userId) => {
 let updateUserData = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
-      if (!data.id || !data.roleId || !data.gender || !data.positionId) {
+      if (!data.id || !data.roleId) {
         resolve({
           errCode: 2,
           errMessage: "Missing required parameters",

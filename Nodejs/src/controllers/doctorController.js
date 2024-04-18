@@ -153,6 +153,48 @@ let getAllScheduleToday = async (req, res) => {
   }
 };
 
+let getDoctorSchedule = async (req, res) => {
+  try {
+    let data = await doctorService.getDoctorSchedule(req.query.doctorId);
+    return res.status(200).json(data);
+  } catch (e) {
+    console.log(e);
+    return res.status(200).json({
+      errCode: -1,
+      errMessage: "Error form service...",
+    });
+  }
+};
+
+let doctorCancelSchedule = async (req, res) => {
+  try {
+    let data = await doctorService.doctorCancelSchedule(
+      req.query.doctorId,
+      req.query.scheduleId
+    );
+    return res.status(200).json(data);
+  } catch (e) {
+    console.log(e);
+    return res.status(200).json({
+      errCode: -1,
+      errMessage: "Error form service...",
+    });
+  }
+};
+
+// let getDetailDoctorById = async (req, res) => {
+//   try {
+//     let infor = await doctorService.getDetailDoctorById(req.query.id);
+//     return res.status(200).json(infor);
+//   } catch (e) {
+//     console.log(e);
+//     return res.status(200).json({
+//       errCode: -1,
+//       errMessage: "Error form service...",
+//     });
+//   }
+// };
+
 let sendRemedy = async (req, res) => {
   try {
     let infor = await doctorService.sendRemedy(req.body);
@@ -179,4 +221,7 @@ module.exports = {
   getListPatientsForDoctor: getListPatientsForDoctor,
   sendRemedy: sendRemedy,
   getAllScheduleToday: getAllScheduleToday,
+  getDoctorSchedule: getDoctorSchedule,
+  doctorCancelSchedule,
+  doctorCancelSchedule,
 };

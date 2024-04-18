@@ -60,6 +60,12 @@ let initWebRoutes = (app) => {
     "/api/get-all-schedule-today",
     doctorController.getAllScheduleToday
   );
+
+  router.get("/api/get-doctor-schedule", doctorController.getDoctorSchedule);
+  router.get(
+    "/api/doctor-cancel-schedule",
+    doctorController.doctorCancelSchedule
+  );
   router.post("/api/send-remedy", doctorController.sendRemedy);
 
   router.post(
@@ -69,6 +75,21 @@ let initWebRoutes = (app) => {
   router.post(
     "/api/verify-book-appointment",
     paitentController.postVerifyBookAppointment
+  );
+
+  router.post(
+    "/api/cancel-book-appointment",
+    paitentController.cancelBookAppointment
+  );
+
+  router.post(
+    "/api/accept-book-appointment",
+    paitentController.acceptBookAppointment
+  );
+
+  router.get(
+    "/api/get-book-appointment-expired",
+    paitentController.getBookAppointmentExpired
   );
 
   router.post(
@@ -116,6 +137,10 @@ let initWebRoutes = (app) => {
   router.get(
     "/api/statiscal/get-count-doctor",
     statiscalController.handleGetCountDoctor
+  );
+  router.get(
+    "/api/statiscal/get-count-medical-package",
+    statiscalController.handleGetCountMedicalPackage
   );
   router.get(
     "/api/statiscal/get-count-specialty",
@@ -173,6 +198,8 @@ let initWebRoutes = (app) => {
     medicalPackageController.handleDeleteMedicalPackage
   );
   router.get("/api/search", paitentController.getSearch);
+
+  router.post("/api/booking", paitentController.bookingByChatBot);
 
   return app.use("/", router);
 };

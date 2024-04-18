@@ -129,6 +129,21 @@ let getCountClinic = () => {
   });
 };
 
+let getCountMedicalPackage = () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let count = await db.Medical_Package.count();
+      resolve({
+        errCode: 0,
+        errMessage: "OK",
+        count: count,
+      });
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
 let postOfDay = () => {
   return new Promise(async (resolve, reject) => {
     try {
@@ -266,12 +281,13 @@ let doctorAppointmentSchedule = () => {
     try {
       const today = new Date();
       today.setHours(0, 0, 0, 0); // Set giờ, phút, giây, mili giây của ngày hiện tại về 0 để so sánh với updatedAt
-
+      const epochTime = today.getTime();
       const doctorAppointmentSchedule = await db.Booking.findAll({
         where: {
-          updatedAt: {
-            [Op.gte]: today,
-          },
+          // updatedAt: {
+          //   [Op.gte]: today,
+          // },
+          date: epochTime,
         },
         include: [
           {
@@ -366,6 +382,7 @@ module.exports = {
   newsByMonth: newsByMonth,
   newsByCategory: newsByCategory,
   doctorAppointmentSchedule: doctorAppointmentSchedule,
+  getCountMedicalPackage: getCountMedicalPackage,
 
   // getCountHandbookofMonth: getCountHandbookofMonth,
 };
