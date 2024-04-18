@@ -11,6 +11,7 @@ import {
   getAllCodeService,
 } from "../../../services/userService";
 import _ from "lodash";
+import LikeAndShare from "../SocialPlugin/Comment";
 import { LANGUAGES } from "../../../utils";
 
 class DetailClinic extends Component {
@@ -62,6 +63,8 @@ class DetailClinic extends Component {
   render() {
     let { arrDoctorId, dataDetailClinic } = this.state;
     let { language } = this.props;
+    let currentURL = window.location.href;
+    let path = new URL(currentURL).pathname;
     return (
       <div className="detail-clinic-container">
         <HomeHeader />
@@ -80,6 +83,17 @@ class DetailClinic extends Component {
                   📍 {dataDetailClinic.address}
                 </div>
                 {/* Các thông tin khác nếu cần */}
+                <div className="plugin-fb">
+                  <div
+                    class="fb-like"
+                    data-href={"https://ddtienanh.fun" + path}
+                    data-width="450"
+                    data-layout=""
+                    data-action=""
+                    data-size=""
+                    data-share="true"
+                  ></div>
+                </div>
               </div>
             </div>
             {dataDetailClinic && !_.isEmpty(dataDetailClinic) && (
@@ -125,6 +139,22 @@ class DetailClinic extends Component {
                 </div>
               );
             })}
+
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              minHeight: "50vh",
+            }}
+          >
+            <div
+              className="fb-comments"
+              data-href={"https://ddtienanh.fun" + path}
+              data-width="1000"
+              data-numposts="5"
+            ></div>
+          </div>
         </div>
       </div>
     );

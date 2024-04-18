@@ -1,0 +1,62 @@
+.section-body-history-booking {
+    display: flex;
+    flex-direction: column; /* Hiển thị các mục theo chiều dọc */
+    align-items: center; /* Căn giữa các mục theo chiều ngang */
+    justify-content: center; /* Căn giữa các mục theo chiều dọc */
+    // height: 100vh; /* Thiết lập chiều cao cho phần tử là 100% chiều cao của màn hình */
+  }
+
+
+
+  .section-customize-history-booking{
+    align-items: center;
+    cursor: pointer;
+    border-color: #45c3d2;
+    border-radius: 20px;
+    border: 1px solid #45c3d2;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 5px 15px 20px;
+    box-shadow: rgba(32, 33, 36, 0.28) 0px 1px 6px;
+    padding: 20px 30px;
+    &:hover {
+        color: #45c3d2;
+        transform: translateY(-5px);
+        border-color: #45c3d2; /* Thay đổi màu viền khi hover */
+      }
+    //   .bg-image {
+    //     border-radius: 15px;
+    //     width: 130px !important;
+    //     height: 130px !important;
+    //     background-size: cover; /* Hiển thị ảnh sao cho lớn nhất có thể nhưng vẫn giữ tỷ lệ khung hình */
+    //     background-position: center; /* Canh chỉnh vị trí của hình ảnh */
+    //     background-repeat: no-repeat; /* Ngăn lặp lại ảnh */
+    //     margin-right: 10px;
+    //   }
+    .bg-image {
+        width: 100px; /* Điều chỉnh kích thước hình ảnh */
+        height: 100px; /* Điều chỉnh kích thước hình ảnh */
+        background-size: cover;
+        background-position: center;
+        margin-right: 25px;
+
+    }
+
+    .item-content {
+        font-size: 16px;
+        flex-grow: 1; /* Để phần tử item-content mở rộng để lấp đầy phần còn lại của flex container */
+      }
+  }
+
+  .section-customize-history-booking.history-booking-child {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-basis: calc(60% - 25px); /* Căn chỉnh chiều rộng cho mỗi mục */
+    max-width: calc(60% - 25px); /* Giới hạn kích thước tối đa của mỗi mục */
+    margin-bottom: 20px; /* Khoảng cách dưới cho mỗi mục */
+    //height: 120px;
+    &:hover{
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Tạo hiệu ứng bóng xung quanh khi di chuột vào */
+    }
+  }

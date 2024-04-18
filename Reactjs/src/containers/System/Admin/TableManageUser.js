@@ -23,6 +23,7 @@ function handleEditorChange({ html, text }) {
 class TableManageUser extends Component {
   constructor(props) {
     super(props);
+    this.tableRef = React.createRef();
     this.state = {
       usersRedux: [],
     };
@@ -56,14 +57,19 @@ class TableManageUser extends Component {
 
   handleEditUser = (user) => {
     this.props.handleEditUserFromParentKey(user);
+    if (this.tableRef.current) {
+      this.tableRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
   };
 
   render() {
     let arrUsers = this.state.usersRedux;
-    console.log(arrUsers);
     return (
       <React.Fragment>
-        <table id="TableManageUser">
+        <table id="TableManageUser" ref={this.tableRef}>
           <tbody>
             <tr>
               <th>
@@ -76,7 +82,13 @@ class TableManageUser extends Component {
                 <FormattedMessage id={"manage-user.last-name"} />
               </th>
               <th>
+                <FormattedMessage id={"manage-user.phone-number"} />
+              </th>
+              <th>
                 <FormattedMessage id={"manage-user.address"} />
+              </th>
+              <th>
+                <FormattedMessage id={"manage-user.role"} />
               </th>
               <th>Action</th>
             </tr>
@@ -89,7 +101,13 @@ class TableManageUser extends Component {
                     <td>{item.email}</td>
                     <td>{item.firstName}</td>
                     <td>{item.lastName}</td>
+                    <td>{item.phoneNumber}</td>
                     <td>{item.address}</td>
+                    <td>
+                      {item.roleId === "R1" && <p>Admin</p>}
+                      {item.roleId === "R2" && <p>Bác sĩ</p>}
+                      {item.roleId === "R3" && <p>Bệnh nhân</p>}
+                    </td>
                     <td>
                       <button
                         onClick={() => this.handleEditUser(item)}

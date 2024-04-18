@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import "./../UserManage.scss";
+import ReactTable from "react-table-6";
+import "react-table-v6/react-table.css";
 import axios from "axios";
 import {
   //createNewHandbookService,
@@ -135,7 +137,7 @@ class HandbookManage extends Component {
     console.log(arrHandbooks);
     return (
       <div className="users-container">
-        <div className="title tex-center">Manage HandBook</div>
+        <div className="title tex-center">Quản lý cẩm nang</div>
         <div className="mx-1">
           <button
             className="btn btn-primary px-3"
@@ -144,8 +146,83 @@ class HandbookManage extends Component {
             <i className="fas fa-plus"></i>Thu thập bài viết
           </button>
         </div>
+        <ReactTable
+          data={arrHandbooks}
+          columns={[
+            //   {
+            //     Header: "STT",
+            //     accessor: (row, index) => index + 1,
+            //   },
+            {
+              Header: "Tiêu đề",
+              width: 400,
+              accessor: "title",
+              filterable: true,
+              Cell: (row) => (
+                <div style={{ overflow: "auto", whiteSpace: "pre-wrap" }}>
+                  {row.value}
+                </div>
+              ),
+            },
+            {
+              Header: "Thể loại",
+              width: 150,
+              accessor: "category",
+              filterable: true,
+              Cell: (row) => (row.value ? row.value : ""),
+            },
+            {
+              Header: "Tóm tắt",
+              accessor: "sapo",
+              filterable: true,
+              Cell: (row) => (
+                <div style={{ overflow: "auto", whiteSpace: "pre-wrap" }}>
+                  {row.value ? row.value : ""}
+                </div>
+              ),
+            },
+            {
+              Header: "Ảnh bìa",
+              accessor: "image",
+              width: 150,
+              filterable: false,
+              Cell: (row) => (
+                <div>
+                  <img
+                    src={row.value}
+                    style={{ height: "100px", width: "160px" }}
+                  />
+                </div>
+              ),
+            },
+            {
+              Header: "Hành động",
+              accessor: "",
+              filterable: false,
+              width: 100,
+              Cell: (row) => (
+                <div className="btn-container">
+                  <button
+                    className="btn-edit"
+                    onClick={() => this.handleEditHandbook(row.original)}
+                  >
+                    <i className="fas fa-pencil-alt"></i>
+                  </button>
+                  <button
+                    className="btn-delete"
+                    onClick={() => this.handleDeleteHandbook(row.original)}
+                  >
+                    <i className="fas fa-trash"></i>
+                  </button>
+                </div>
+              ),
+            },
+          ]}
+          defaultPageSize={20}
+          className="-striped -highlight"
+        />
         <div className="users-table mt-3 mx-1">
-          <table id="customers">
+          {/* <table id="customers">
             <tbody>
               <tr>
                 <th>
@@ -189,13 +266,15 @@ class HandbookManage extends Component {
                       <td>
                         <button
                           className="btn-edit"
-                          onClick={() => this.handleEditHandbook(item)}
+                          onClick={() => this.handleEditHandbook(arrHandbooks)}
                         >
                           <i className="fas fa-pencil-alt"></i>
                         </button>
                         <button
                           className="btn-delete"
-                          onClick={() => this.handleDeleteHandbook(item)}
+                          onClick={() =>
+                            this.handleDeleteHandbook(arrHandbooks)
+                          }
                         >
                           <i className="fas fa-trash"></i>
                         </button>
@@ -204,7 +283,7 @@ class HandbookManage extends Component {
                   );
                 })}
             </tbody>
-          </table>
+          </table> */}
         </div>
       </div>
     );

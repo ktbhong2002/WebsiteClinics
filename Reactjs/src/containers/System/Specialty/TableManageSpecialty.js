@@ -97,7 +97,7 @@ class TableManageSpecialty extends Component {
                           <span>
                             {" "}
                             <Link
-                              to={`/detail-specialty/${item.id}`}
+                              to={`/specialties/${item.id}`}
                               target="_blank"
                             >
                               Xem thêm

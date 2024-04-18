@@ -25,7 +25,7 @@ class specialtyHome extends Component {
 
   handleViewDetailSpecialty = (item) => {
     if (this.props.history) {
-      this.props.history.push(`/detail-specialty/${item.id}`);
+      this.props.history.push(`/specialties/${item.id}`);
     }
   };
 
@@ -34,7 +34,7 @@ class specialtyHome extends Component {
 
     return (
       <div
-        className="section-share section-specialty"
+        className="section-share section-doctor"
         style={{
           backgroundImage:
             "url('https://www.tailwindcss.cn/_next/static/media/docs@tinypng.d9e4dcdc.png')",

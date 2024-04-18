@@ -54,17 +54,25 @@ border-bottom: 1px solid #ccc;
         justify-content: flex-end;
         align-items: center;
 
-        .support{
+        .support {
             padding-right: 50px;
             display: flex;
             align-items: center;
             cursor: pointer;
-
-            i{
-                font-size: 15px;
-                margin-right: 5px;
-            }
-        }
+          }
+          
+          .support:hover {
+            transform: translateY(-3px); /* Lift up by 5px */
+          }
+          
+          .support i {
+            font-size: 15px;
+            margin-right: 5px;
+          }
+          
+          .support:hover i {
+            text-decoration: underline; /* Add underline when hovered over */
+          }
 
         .language-vi{
             font-size: 30px;

@@ -3,6 +3,7 @@
 
     .intro-doctor{
         display: flex;
+        margin-left: 100px;
 
         .content-left{
             width: 20%;
@@ -29,7 +30,17 @@
 
             .down{
                 padding-top:10px;
+                white-space: pre-wrap;
             }
+            .plugin-fb{
+                margin-top: 10px;
+                height: fit-content;
+            }
+        }
+
+        .plugin-fb{
+            margin-top: 10px;
+            height: fit-content;
         }
     }
 
@@ -63,7 +74,14 @@
         }
     }
 
-    .comment-doctor{
-        height: 50px;
+    .doctor-comment-container{
+        height: fit-content;
+        padding: 10px 0;
+        .comment{
+            height: fit-content;
+            padding: 0 15px;
+            width: 1170px;
+            margin: 0 auto;
+        }
     }
 }

@@ -6,6 +6,8 @@ import { getDetailInforDoctor } from "../../../services/userService";
 import { LANGUAGES } from "../../../utils";
 import DoctorSchedule from "./DoctorSchedule";
 import DoctorExtraInfor from "./DoctorExtraInfor";
+import LikeAndShare from "../SocialPlugin/LikeAndShare";
+import Comment from "../SocialPlugin/Comment";
 
 class DetailDoctor extends Component {
   constructor(props) {
@@ -50,6 +52,9 @@ class DetailDoctor extends Component {
       nameVi = `${detailDoctor.positionData.valueVi},${detailDoctor.lastName} ${detailDoctor.firstName}`;
       nameEn = `${detailDoctor.positionData.valueEn},${detailDoctor.firstName} ${detailDoctor.lastName}`;
     }
+
+    let currentURL = window.location.href;
+    let path = new URL(currentURL).pathname;
     return (
       <>
         <HomeHeader isShowBanner={false} />
@@ -66,13 +71,24 @@ class DetailDoctor extends Component {
             <div className="content-right">
               <div className="up">
                 {language === LANGUAGES.VI ? nameVi : nameEn}
-              </div>
+              </div>{" "}
               <div className="down">
                 {detailDoctor &&
                   detailDoctor.Markdown &&
                   detailDoctor.Markdown.description && (
                     <span>{detailDoctor.Markdown.description}</span>
                   )}
+              </div>
+              <div className="plugin-fb">
+                <div
+                  class="fb-like"
+                  data-href={"https://ddtienanh.fun" + path}
+                  data-width="1000"
+                  data-layout=""
+                  data-action=""
+                  data-size=""
+                  data-share="true"
+                ></div>
               </div>
             </div>
           </div>
@@ -98,8 +114,21 @@ class DetailDoctor extends Component {
                 ></div>
               )}
           </div>
-
-          <div className="comment-doctor"></div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              minHeight: "50vh",
+            }}
+          >
+            <div
+              className="fb-comments"
+              data-href={"https://ddtienanh.fun" + path}
+              data-width="1000"
+              data-numposts="5"
+            ></div>
+          </div>
         </div>
       </>
     );

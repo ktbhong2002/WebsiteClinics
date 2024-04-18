@@ -4,6 +4,7 @@ import { FormattedMessage } from "react-intl";
 import "./ManagePatient.scss";
 import DatePicker from "../../../components/Input/DatePicker";
 import {
+  cancelBookAppointment,
   getAllPatientForDoctor,
   postSendRemedy,
 } from "../../../services/userService";
@@ -74,6 +75,23 @@ class ManagePatient extends Component {
     });
   };
 
+  handleBtnCancel = async (item) => {
+    let { dataModal } = this.state;
+    let res = await cancelBookAppointment({ id: item.id }); // Pass doctorId from item
+    if (res && res.errCode === 0) {
+      this.setState({
+        isShowLoading: false,
+      });
+      await this.getDataPatient();
+      toast.success("Cancel Appointment successfully!");
+    } else {
+      this.setState({
+        isShowLoading: false,
+      });
+      toast.error("Failed to Cancel Appointment");
+    }
+  };
+
   closeRemedyModal = () => {
     this.setState({
       isOpenRemedyModal: false,
@@ -141,6 +159,7 @@ class ManagePatient extends Component {
                       <th>Thời gian</th>
                       <th>Họ tên</th>
                       <th>Địa chỉ</th>
+                      <th>Lý do khám</th>
                       <th>Giới tính</th>
                       <th>Actions</th>
                     </tr>
@@ -160,13 +179,20 @@ class ManagePatient extends Component {
                             <td>{time}</td>
                             <td>{item.patientData.firstName}</td>
                             <td>{item.patientData.address}</td>
+                            <td>{item.patientData.reason}</td>
                             <td>{gender}</td>
                             <td>
                               <button
                                 className="mp-btn-confirm"
                                 onClick={() => this.handleBtnConfirm(item)}
                               >
-                                Xác nhận
+                                Gửi hóa đơn
+                              </button>
+                              <button
+                                className="mp-btn-delete"
+                                onClick={() => this.handleBtnCancel(item)}
+                              >
+                                {item.statusId === "S4" ? "Đã hủy" : "Hủy"}
                               </button>
                             </td>
                           </tr>

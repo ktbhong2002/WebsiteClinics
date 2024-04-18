@@ -46,3 +46,13 @@ div._loading_overlay_wrapper{
         }
     }
 }
+
+.btn-container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .btn-container button {
+    margin: 0 5px; /* Điều chỉnh khoảng cách giữa các nút */
+  }
+  

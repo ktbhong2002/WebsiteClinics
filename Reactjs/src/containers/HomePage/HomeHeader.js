@@ -7,6 +7,8 @@ import { changeLanguageApp } from "../../store/actions";
 import { withRouter } from "react-router";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { search } from "../../services/userService";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClockRotateLeft } from "@fortawesome/free-solid-svg-icons";
 
 class HomeHeader extends Component {
   state = {
@@ -29,14 +31,15 @@ class HomeHeader extends Component {
       let doctors = res.result.doctors;
       let clinics = res.result.clinics;
       let specialties = res.result.specialty;
+      let medicalPackages = res.result.medicalPackages;
       let result = [];
       result = doctors.map((item) => ({
         id: item.id,
         type: 1,
         valueDisplay:
           this.props.language === LANGUAGES.VI
-            ? `Bác sĩ, ${item.lastName} ${item.firstName}`
-            : `Doctor, ${item.firstName} ${item.lastName}`,
+            ? `Bác sĩ ${item.lastName} ${item.firstName}`
+            : `Doctor ${item.firstName} ${item.lastName}`,
       }));
       result = [
         ...result,
@@ -45,8 +48,8 @@ class HomeHeader extends Component {
           type: 0,
           valueDisplay:
             this.props.language === LANGUAGES.VI
-              ? `Cơ sở, ${item.name}`
-              : `Clinic, ${item.name}`,
+              ? `Cơ sở ${item.name}`
+              : `Clinic ${item.name}`,
         })),
       ];
       result = [
@@ -56,8 +59,19 @@ class HomeHeader extends Component {
           type: 2,
           valueDisplay:
             this.props.language === LANGUAGES.VI
-              ? `Chuyên khoa, ${item.name}`
-              : `Specialty, ${item.name}`,
+              ? `Chuyên khoa ${item.name}`
+              : `Specialty ${item.name}`,
+        })),
+      ];
+      result = [
+        ...result,
+        ...medicalPackages.map((item) => ({
+          id: item.id,
+          type: 3,
+          valueDisplay:
+            this.props.language === LANGUAGES.VI
+              ? ` ${item.name}`
+              : ` ${item.name}`,
         })),
       ];
 
@@ -86,7 +100,10 @@ class HomeHeader extends Component {
         path = `/detail-clinic/${id}`;
         break;
       case 2:
-        path = `/detail-specialty/${id}`;
+        path = `/specialties/${id}`;
+        break;
+      case 3:
+        path = `/detail-medical-package/${id}`;
         break;
       default:
         break;
@@ -99,9 +116,25 @@ class HomeHeader extends Component {
     return (
       <React.Fragment>
         <div className="home-header-container">
+          <div id="fb-root"></div>
+          <script
+            async
+            defer
+            crossorigin="anonymous"
+            src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v19.0"
+            nonce="hLdNmO7C"
+          ></script>
+          <div id="fb-root"></div>
+          <script
+            async
+            defer
+            crossorigin="anonymous"
+            src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v19.0"
+            nonce="uBAAZOW2"
+          ></script>
           <div className="home-header-content">
             <div className="left-content">
-              <i className="fas fa-bars"></i>
+              {/* <i className="fas fa-bars"></i> */}
               <div
                 className="header-logo"
                 onClick={() => this.returnToHome()}
@@ -158,9 +191,17 @@ class HomeHeader extends Component {
               </Link>
             </div>
             <div className="right-content">
-              <div className="support">
-                <i className="fas fa-question-circle"></i>
-                <FormattedMessage id="home_header.support" />
+              <div className="support" style={{ fontSize: "17px" }}>
+                <Link
+                  to="/history-booking/"
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  <i
+                    className="fas fa-clock fa-spin"
+                    style={{ color: "#1250ba" }}
+                  ></i>
+                  <strong>Lịch hẹn</strong>
+                </Link>
               </div>
               <div
                 className={

@@ -73,14 +73,14 @@ class MedicalPackage extends Component {
           sapo: "",
           address: "",
           price: "",
+          image: "",
           specialty:
             arrSpecialties && arrSpecialties.length > 0
               ? arrSpecialties[0].id
               : "",
           clinic: arrClinics && arrClinics.length > 0 ? arrClinics[0].id : "",
-          image: "",
-          action: CRUD_ACTION.CREATE,
           avatar: "",
+          action: CRUD_ACTION.CREATE,
           previewImgURL: "",
         });
       }
@@ -185,9 +185,7 @@ class MedicalPackage extends Component {
   handleEditMedicalPackageFromParent = (medicalPackage) => {
     let imageBase64 = "";
     if (medicalPackage.image) {
-      imageBase64 = new Buffer.from(medicalPackage.image, "base64").toString(
-        "binary"
-      );
+      imageBase64 = medicalPackage.image;
     }
 
     this.setState({
@@ -253,7 +251,7 @@ class MedicalPackage extends Component {
               </div>
 
               <div className="col-4">
-                <label>Phong kham</label>
+                <label>Phòng khám</label>
                 <select
                   className="form-control"
                   onChange={(event) => {
@@ -274,7 +272,7 @@ class MedicalPackage extends Component {
               </div>
 
               <div className="col-4">
-                <label>Chuyen khoa</label>
+                <label>Chuyên khoa</label>
                 <select
                   className="form-control"
                   onChange={(event) => {

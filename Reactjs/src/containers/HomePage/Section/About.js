@@ -22,20 +22,22 @@ class About extends Component {
             ></iframe>
           </div>
           <div className="content-right">
-            <h4>
-              On his deathbed, a father advised his son to always speak the
-              truth. The son promised that he would never tell a lie. One day,
-              while going to the city through a forest, he got surrounded by
-              some robbers. One of them asked: “What do you have?”. The boy
-              answered, “I have fifty rupees”. They searched for him but
-              couldn’t find anything.
-            </h4>
-            <h4>
-              When they were about to go, the boy called out: “I am not telling
-              a lie. See this fifty rupee note which I had hidden in my shirt”.
-              The leader of the robbers felt pleased at the truthfulness of the
-              boy, and gave him hundred rupees as reward and went away.
-            </h4>
+            <h5>
+              BookingCare là Nền tảng Y tế chăm sóc sức khỏe toàn diện cung cấp
+              nền tảng công nghệ giúp bệnh nhân dễ dàng lựa chọn đúng bác sĩ từ
+              mạng lưới bác sĩ chuyên khoa giỏi, với thông tin đã xác thực và
+              đặt lịch nhanh chóng. BookingCare là nền tảng kết nối mạng lưới
+              bác sĩ giỏi ở nhiều bệnh viện, phòng khám khác nhau.
+            </h5>
+            <h5>
+              BookingCare hoạt động liên tục 24 giờ một ngày, 7 ngày một tuần,
+              và 365 ngày một năm, kể cả ngày nghỉ và ngày lễ để bạn có thể đặt
+              lịch trực tuyến.Bạn có thể sử dụng dịch vụ đặt lịch khám của
+              BookingCare bất cứ lúc nào nếu bạn có một tình trạng sức khỏe
+              không khẩn cấp, có kế hoạch thăm khám chủ động. Hoặc đơn giản là
+              muốn có một lựa chọn phù hợp, hiệu quả thay cho cho việc đến đăng
+              ký khám trực tiếp và chờ đợi, xếp hàng tại các cơ sở y tế.
+            </h5>
           </div>
         </div>
       </div>

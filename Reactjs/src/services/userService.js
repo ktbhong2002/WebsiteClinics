@@ -142,6 +142,9 @@ const getAllPatientsForDoctor = (data) => {
   );
 };
 
+const cancelBookAppointment = (data) => {
+  return axios.post(`/api/cancel-book-appointment`, data);
+};
 const postSendRemedy = (data) => {
   return axios.post(`/api/send-remedy`, data);
 };
@@ -370,4 +373,5 @@ export {
   getDetailInforMedicalPackage,
   createNewMedicalPackageService,
   search,
+  cancelBookAppointment,
 };

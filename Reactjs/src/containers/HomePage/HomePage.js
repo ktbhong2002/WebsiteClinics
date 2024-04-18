@@ -63,31 +63,6 @@ class HomePage extends Component {
         <HomeFooter />
 
         {/* Add Dialogflow Messenger */}
-        <df-messenger
-          intent="WELCOME"
-          chat-title="BookingCare"
-          agent-id="35a9454e-7af2-4630-a14e-aa68ba4cf9e3"
-          language-code="vi"
-        ></df-messenger>
-
-        <div className="connect-button">
-          <a href="https://zalo.me/your_zalo_id">
-            <div className="zalo-button">
-              <img />
-            </div>
-          </a>
-          <a href="https://www.facebook.com/61557548927775">
-            <div className="facebook-button">
-              <img />
-            </div>
-          </a>
-
-          {/* <a href="tel:your_hotline_number" >
-                        <div className="hotline-button">
-                            <img />
-                        </div>
-                    </a> */}
-        </div>
       </div>
     );
   }

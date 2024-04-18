@@ -74,18 +74,14 @@ class MedicalPackageHome extends Component {
                   onClick={() => this.handleViewDetailMedicalPackage(item)}
                 >
                   <div className="medicalPackage-image">
-                    <img
-                      src={`data:image/jpeg;base64,${Buffer.from(
-                        item.image,
-                        "binary"
-                      ).toString("base64")}`}
-                      alt={item.name}
-                    />
+                    <img src={item.image} alt={item.name} />
                   </div>
                   <div className="medicalPackage-info">
                     <div className="medicalPackage-name">{item.name}</div>
                     <div className="medicalPackage-clinic">{item.sapo}</div>
-                    <div className="medicalPackage-clinic">{item.sapo}</div>
+                    <div className="medicalPackage-clinic">
+                      🏥 {item.clinicData.name}
+                    </div>
                   </div>
                   <div className="col-12 row medicalPackage-content">
                     <div className="col-md-6">Giá: </div>

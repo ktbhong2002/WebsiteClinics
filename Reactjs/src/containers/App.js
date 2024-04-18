@@ -26,6 +26,8 @@ import clinicHome from "./Patient/Clinic/clinicHome";
 import doctorHome from "./Patient/Doctor/doctorHome";
 import medicalPackageHome from "./Patient/MedicalPackage/MedicalPackageHome";
 import DetailMedicalPackage from "./Patient/MedicalPackage/DetailMedicalPackage";
+import historyBooking from "./Patient/HistoryBooking/historyBooking";
+
 class App extends Component {
   handlePersistorState = () => {
     const { persistor } = this.props;
@@ -83,6 +85,10 @@ class App extends Component {
                   <Route
                     path={"/medical-package/"}
                     component={medicalPackageHome}
+                  />
+                  <Route
+                    path={"/history-booking/"}
+                    component={historyBooking}
                   />
                   <Route
                     path={path.DEATAIL_MEDICAL_PACKAGE}
